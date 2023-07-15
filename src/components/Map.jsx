@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
+import '../styles/App.css';
 
 const Map = () => {
   const [data, setData] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [markerOpen, setMarkerOpen] = useState(false);
   const mapRef = useRef(null);
+  const infoWindowsRef = useRef({});
 
   useEffect(() => {
     fetch('/Etsy2023G.csv')
@@ -50,12 +53,41 @@ const Map = () => {
         };
 
         const marker = new window.google.maps.Marker(markerOptions);
-        marker.addListener('click', () => {
-          setSelectedMarker({
-            item: item.item,
-            name: item.name
-          });
+        const infoWindowContent =
+          `<div id='modalContent'>
+          <div id='modalHeader'>
+             <h2>More Info</h2>
+          </div>
+          <div>
+              <b>Name:</b> ${item.name}
+            </div>
+            <div>
+              <b>Item:</b> ${item.item}
+            </div>
+            <div>
+              <b>Date:</b> ${item.date}
+            </div><br />
+          </div>
+        `
+
+        const infoWindow = new window.google.maps.InfoWindow({
+          content: infoWindowContent
         });
+
+        marker.addListener('click', () => {
+          setSelectedMarker(item);
+          setMarkerOpen(true);
+
+          // Close any previously opened info windows
+          Object.values(infoWindowsRef.current).forEach(infoWindow => {
+            infoWindow.close();
+          });
+
+          // Open the info window for the clicked marker
+          infoWindow.open(map, marker);
+          infoWindowsRef.current[item.name] = infoWindow;
+        });
+
         return marker;
       });
 
@@ -73,7 +105,7 @@ const Map = () => {
       // heatmap.setMap(heatmap);
       heatmap.set('radius', 20);
       heatmap.set('opacity', 0.6);
-      // heatmap.set('gradient', ['rgba(255, 0, 0, 0)', 'rgba(255, 0, 0, 1']);
+      // heatmap.set('gradient', ['rgba(255, 0, 0, 0)', 'rgba(255, 0, 0, 1)']);
     };
 
     if (!window.google || !window.google.maps) {
@@ -95,7 +127,6 @@ const Map = () => {
       } else {
         existingScript.onload = initMap;
       }
-
       window.initMap = initMap;
     } else {
       // Google Maps API already loaded, so directly call initMap

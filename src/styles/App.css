@@ -2,9 +2,22 @@
   text-align: center;
 }
 
+#modalHeader {
+  color: black;
+  text-align: left;
+  display: flex;
+}
+
+#modalContent {
+  color: black;
+  text-align: left;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  width: 200px;
+  height: 100px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
