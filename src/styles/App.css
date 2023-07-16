@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
 #modalHeader {
@@ -27,14 +28,14 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #FDE0CC;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  border-bottom: 1px solid #F56400;
 }
 
 .App-link {
@@ -48,4 +49,9 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#map {
+  width: 100%;
+  height: calc(100% - 40px);
 }
