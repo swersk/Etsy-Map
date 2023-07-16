@@ -32,13 +32,13 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, heatmap }) => {
   return (
     <div id="floating-panel" style={{
       position: 'absolute',
-      top: '78px',
+      top: '82px',
       left: '200px',
       zIndex: 1,
       border: '1px solid #ccc',
-      borderRadius: '4px',
+      borderRadius: '2px',
       background: '#fff',
-      padding: '10px',
+      padding: '5px',
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
