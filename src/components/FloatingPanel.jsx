@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
@@ -15,6 +16,31 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap }) => {
   const handleFilterClose = () => {
     setAnchorEl(null);
   };
+
+  const photos = [
+    //add the rest of the photos
+    {
+      src: "https://i.etsystatic.com/12475356/r/il/196c6f/4122318507/il_75x75.4122318507_38c6.jpg",
+      title: 'Camino de Santiago Bandages, Plasters, 30pcs',
+    },
+    { src: 'https://i.etsystatic.com/12475356/r/il/9b34b1/4740924743/il_75x75.4740924743_suz9.jpg',
+      title: 'Camino de Santiago Bandages, Plasters, 30pcs'
+    },
+    { src: 'https://i.etsystatic.com/12475356/r/il/004e5a/4740976481/il_75x75.4740976481_fqy7.jpg',
+      title: 'Camino de Santiago Bandages, Plasters, 30pcs'
+    },
+    { src: 'https://i.etsystatic.com/12475356/c/1000/794/1000/…il/05d94e/4278333409/il_75x75.4278333409_iwrw.jpg',
+      title: 'Sticker, Buen Camino! (Camino de Santiago)'
+    },
+    { src: 'https://i.etsystatic.com/12475356/c/1080/858/535/9…il/cb45b7/4230175724/il_75x75.4230175724_mc7h.jpg',
+      title: 'Sticker, Buen Camino! (Camino de Santiago)'
+    },
+    { src: 'https://i.etsystatic.com/12475356/c/1360/1081/778/…il/05100a/4233850976/il_75x75.4233850976_jnqh.jpg',
+      title: '  Sticker, Buen Camino! (Camino de Santiago)'
+    },
+
+
+  ];
 
   return (
     <div
@@ -83,41 +109,42 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap }) => {
           },
         }}
       >
-        <li role="presentation">
-          <MenuItem
-            role="menuitem"
-            className='list-nav-item width-full text-body unstyled-button'
-            onClick={handleFilterClose}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              backgroundColor: 'transparent',
-              '&:hover': {
-                backgroundColor: '#f1f1f1',
-              },
-              fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
-              fontSize: '14px',
-              color: '#222',
-              cursor: 'pointer'
-            }}
+        {photos.map((photo, index) => (
+          <li key={index}>
+            <MenuItem
+              role="menuitem"
+              className="list-nav-item width-full text-body unstyled-button"
+              onClick={handleFilterClose}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: 'transparent',
+                '&:hover': {
+                  backgroundColor: '#f1f1f1',
+                },
+                fontFamily:
+                  'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+                fontSize: '14px',
+                color: '#222',
+                cursor: 'pointer',
+              }}
             >
-              <div className="flag" style={{ display: 'flex', alignItems: 'center'}}>
-                <div className="product-img" >
-                    <img
+              <div className="flag" style={{ display: 'flex', alignItems: 'center' }}>
+                <div className="product-img">
+                  <img
                     className="flag-img thumbnail mr-xs-2 height-50px width-50px"
-                    src="https://i.etsystatic.com/12475356/r/il/196c6f/4122318507/il_75x75.4122318507_38c6.jpg"
-                    alt="Camino bandages"
-                    style={{border: '0.5px solid #D3D3D3', height: '50x', width: '50px'}}
+                    src={photo.src}
+                    alt={photo.title}
+                    style={{ border: '0.5px solid #D3D3D3', height: '50x', width: '50px' }}
                   />
                 </div>
-                <div className="product-title">
-                  <span style={{marginLeft: '15px'}}>
-                    Camino de Santiago Bandages, Plasters, 30pcs
-                  </span>
+                <div className="product-title" style={{ marginLeft: '15px' }}>
+                  <span>{photo.title}</span>
                 </div>
               </div>
             </MenuItem>
-        </li>
+          </li>
+        ))}
       </Menu>
     </div>
   );
@@ -127,37 +154,38 @@ export default FloatingPanel;
 
 
 
-//v1
 
-// import React, { useState, useEffect } from 'react';
+// //v1
 
-// const FloatingPanel = ({ setShowHeatMap, showHeatMap, heatmap }) => {
+// // import React, { useState, useEffect } from 'react';
 
-//   const handleToggle = () => {
-//     setShowHeatMap(!showHeatMap);
-//   };
+// // const FloatingPanel = ({ setShowHeatMap, showHeatMap, heatmap }) => {
 
-//   return (
-//     <div id="floating-panel" style={{
-//       position: 'absolute',
-//       top: '82px',
-//       left: '200px',
-//       zIndex: 1,
-//       border: '1px solid #ccc',
-//       borderRadius: '2px',
-//       background: '#fff',
-//       padding: '5px',
-//       display: 'flex',
-//       justifyContent: 'flex-start',
-//       alignItems: 'center',
-//     }}>
-//       <button id="toggle-heatmap" onClick={handleToggle}>
-//         Toggle Heatmap
-//       </button>
-//       <button id="change-radius">Change radius</button>
-//       <button id="change-opacity">Change opacity</button>
-//     </div>
-//   );
-// };
+// //   const handleToggle = () => {
+// //     setShowHeatMap(!showHeatMap);
+// //   };
 
-// export default FloatingPanel;
+// //   return (
+// //     <div id="floating-panel" style={{
+// //       position: 'absolute',
+// //       top: '82px',
+// //       left: '200px',
+// //       zIndex: 1,
+// //       border: '1px solid #ccc',
+// //       borderRadius: '2px',
+// //       background: '#fff',
+// //       padding: '5px',
+// //       display: 'flex',
+// //       justifyContent: 'flex-start',
+// //       alignItems: 'center',
+// //     }}>
+// //       <button id="toggle-heatmap" onClick={handleToggle}>
+// //         Toggle Heatmap
+// //       </button>
+// //       <button id="change-radius">Change radius</button>
+// //       <button id="change-opacity">Change opacity</button>
+// //     </div>
+// //   );
+// // };
+
+// // export default FloatingPanel;
