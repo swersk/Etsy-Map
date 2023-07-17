@@ -51,7 +51,7 @@ const Map = () => {
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
 
       // create marker instances
-
+        if (markers) {
         const markers = data.map(item => {
           const markerOptions = {
             position: {
@@ -104,7 +104,9 @@ const Map = () => {
           });
 
           return marker;
-        });
+        })
+      };
+
         if (showHeatMap) {
         // Create heatmap instance
         const heatmapData = data.map(item => {
@@ -148,11 +150,15 @@ const Map = () => {
       initMap();
     }
     setHeatmap(heatmap)
-  }, [data, showHeatMap]);
+  }, [data, showHeatMap, markers]);
+
+  const handleMarkers = () => {
+    setShowMarkers(!markers)
+  }
 
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData}/>
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers}/>
       <div id="map" ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
     </>
   );

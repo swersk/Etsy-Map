@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const FloatingPanel = ({ setShowHeatMap, showHeatMap, data }) => {
+const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, handleMarkers }) => {
 
 const [itemSelected, setItemSelected] = useState('')
 
@@ -123,6 +123,15 @@ useEffect(() => {
         fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
       }}
     >
+      <Button
+        id="toggle-heatmap"
+        onClick={handleMarkers}
+        className="e2moi"
+        size="small"
+        sx={{ color: '#000', background: 'white', marginRight: '10px' }}
+      >
+        Toggle Markers
+      </Button>
       <Button
         id="toggle-heatmap"
         onClick={handleToggle}
