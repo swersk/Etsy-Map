@@ -51,7 +51,7 @@ const Map = () => {
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
 
       // create marker instances
-      if (showHeatMap && markers) {
+
         const markers = data.map(item => {
           const markerOptions = {
             position: {
@@ -105,7 +105,7 @@ const Map = () => {
 
           return marker;
         });
-
+        if (showHeatMap) {
         // Create heatmap instance
         const heatmapData = data.map(item => {
           return new window.google.maps.LatLng(item.latitude, item.longitude);
