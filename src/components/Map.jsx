@@ -152,7 +152,7 @@ const Map = () => {
 
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data}/>
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData}/>
       <div id="map" ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
     </>
   );

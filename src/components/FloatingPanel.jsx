@@ -14,7 +14,7 @@ useEffect(() => {
     if (data.length > 0) {
       const filteredData = data.filter(item => item.item === itemSelected);
       console.log('Filtered data:', filteredData)
-      // add additional logic with the filtered data (pass up to Map)
+      // pass the filtered data to map to trigger useEffect and change pins
     }
   };
   filterData();

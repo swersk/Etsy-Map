@@ -7,7 +7,9 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
+import CreateIcon from '@mui/icons-material/Create';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
+import GetAppIcon from '@mui/icons-material/GetApp';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useState } from 'react';
 
@@ -20,6 +22,10 @@ const Dropdown = () => {
     window.open('https://www.etsy.com/uk/shop/BabelooDesigns?ref=seller-platform-mcnav')
   }
 
+   const handleDownload = () => {
+    window.open('https://www.etsy.com/uk/your/shops/BabelooDesigns/download')
+  }
+
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
     setOpen(!open);
@@ -29,6 +35,14 @@ const Dropdown = () => {
     setAnchorEl(null);
     setOpen(false);
   };
+
+  const handleContact = () => {
+    const emailAddress = 'ms.swersky@gmail.com';
+    const subject = 'Regarding your Etsy sales map';
+    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}`;
+    window.location.href = mailtoUrl;
+  };
+
 
   return (
     <>
@@ -81,32 +95,20 @@ const Dropdown = () => {
       >
         <MenuItem onClick={openShop}>
           <Avatar src="https://i.etsystatic.com/isla/330fa4/56457224/isla_180x180.56457224_t77zstsm.jpg?version=0"/>
-          My account
+          My Account
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={handleContact}>
           <ListItemIcon>
-            <FilterListIcon fontSize="small" />
+            <CreateIcon  fontSize="small" />
           </ListItemIcon>
-          Filter by Item
+          Contact
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleDownload}>
           <ListItemIcon>
-            <SearchIcon fontSize="small" />
+            <GetAppIcon fontSize="small" />
           </ListItemIcon>
-          Search
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <FindInPageIcon fontSize="small" />
-          </ListItemIcon>
-          Find
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <VisibilityIcon fontSize="small" />
-          </ListItemIcon>
-          Browse
+            Download Shop Data
         </MenuItem>
       </Menu>
     </>
