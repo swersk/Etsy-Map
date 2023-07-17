@@ -1,58 +1,88 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
 
-const FloatingPanel = ({ setShowHeatMap, showHeatMap, heatmap }) => {
-
-  const [gradientEnabled, setGradientEnabled] = useState(false);
-
+const FloatingPanel = ({ setShowHeatMap, showHeatMap }) => {
   const handleToggle = () => {
     setShowHeatMap(!showHeatMap);
   };
 
-  const handleGradient = () => {
-    setGradientEnabled(!gradientEnabled);
-    const gradient = [
-      "rgba(0, 255, 255, 0)",
-      "rgba(0, 255, 255, 1)",
-      "rgba(0, 191, 255, 1)",
-      "rgba(0, 127, 255, 1)",
-      "rgba(0, 63, 255, 1)",
-      "rgba(0, 0, 255, 1)",
-      "rgba(0, 0, 223, 1)",
-      "rgba(0, 0, 191, 1)",
-      "rgba(0, 0, 159, 1)",
-      "rgba(0, 0, 127, 1)",
-      "rgba(63, 0, 91, 1)",
-      "rgba(127, 0, 63, 1)",
-      "rgba(191, 0, 31, 1)",
-      "rgba(255, 0, 0, 1)"
-    ]
-      heatmap.set("gradient", heatmap.get("gradient") ? null : gradient)
-  }
-
   return (
-    <div id="floating-panel" style={{
-      position: 'absolute',
-      top: '82px',
-      left: '200px',
-      zIndex: 1,
-      border: '1px solid #ccc',
-      borderRadius: '2px',
-      background: '#fff',
-      padding: '5px',
-      display: 'flex',
-      justifyContent: 'flex-start',
-      alignItems: 'center',
-    }}>
-      <button id="toggle-heatmap" onClick={handleToggle}>
+    <div
+      id="floating-panel"
+      style={{
+        position: 'absolute',
+        top: '82px',
+        left: '200px',
+        zIndex: 1,
+        border: '1px solid #ccc',
+        borderRadius: '2px',
+        background: '#F78333',
+        padding: '5px',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
+      }}
+    >
+      <Button
+        id="toggle-heatmap"
+        onClick={handleToggle}
+        className="e2moi"
+        size="small"
+        sx={{color: '#000', background: 'white', marginRight: '10px'}}
+      >
         Toggle Heatmap
-      </button>
-      <button id="change-gradient" onClick={handleGradient}>
-        Change gradient
-      </button>
-      <button id="change-radius">Change radius</button>
-      <button id="change-opacity">Change opacity</button>
+      </Button>
+      <div>
+      <Button id="change-radius" className="e2moi" size="small" sx={{color: '#000', background: 'white', marginRight: '10px'}}>
+        Change radius
+      </Button>
+      </div>
+      <Button id="change-opacity" className="e2moi" size="small" sx={{color: '#000', background: 'white', marginRight: '10px'}}>
+        Change opacity
+      </Button>
+      <Button id="filter-button" className="e2moi" size="small" sx={{color: '#000', background: 'white'}}>
+        Filter by Product
+      </Button>
     </div>
   );
 };
 
 export default FloatingPanel;
+
+
+
+//v1
+
+// import React, { useState, useEffect } from 'react';
+
+// const FloatingPanel = ({ setShowHeatMap, showHeatMap, heatmap }) => {
+
+//   const handleToggle = () => {
+//     setShowHeatMap(!showHeatMap);
+//   };
+
+//   return (
+//     <div id="floating-panel" style={{
+//       position: 'absolute',
+//       top: '82px',
+//       left: '200px',
+//       zIndex: 1,
+//       border: '1px solid #ccc',
+//       borderRadius: '2px',
+//       background: '#fff',
+//       padding: '5px',
+//       display: 'flex',
+//       justifyContent: 'flex-start',
+//       alignItems: 'center',
+//     }}>
+//       <button id="toggle-heatmap" onClick={handleToggle}>
+//         Toggle Heatmap
+//       </button>
+//       <button id="change-radius">Change radius</button>
+//       <button id="change-opacity">Change opacity</button>
+//     </div>
+//   );
+// };
+
+// export default FloatingPanel;

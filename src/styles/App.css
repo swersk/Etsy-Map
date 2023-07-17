@@ -3,6 +3,10 @@
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
+.gm-style .gm-style-mtc button {
+  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+}
+
 #modalHeader {
   color: black;
   text-align: left;

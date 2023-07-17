@@ -14,6 +14,11 @@ import { useState } from 'react';
 const Dropdown = () => {
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [nestedDropdown, setNestedDropdown] = useState(false);
+
+  const openShop = () => {
+    window.open('https://www.etsy.com/uk/shop/BabelooDesigns?ref=seller-platform-mcnav')
+  }
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
@@ -74,34 +79,34 @@ const Dropdown = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar />
+        <MenuItem onClick={openShop}>
+          <Avatar src="https://i.etsystatic.com/isla/330fa4/56457224/isla_180x180.56457224_t77zstsm.jpg?version=0"/>
           My account
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
+        <MenuItem>
           <ListItemIcon>
             <FilterListIcon fontSize="small" />
           </ListItemIcon>
-          FilterListIcon by Product
+          Filter by Item
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <SearchIcon fontSize="small" />
           </ListItemIcon>
-          Search Icon
+          Search
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <FindInPageIcon fontSize="small" />
           </ListItemIcon>
-          FindInPageIcon
+          Find
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <VisibilityIcon fontSize="small" />
           </ListItemIcon>
-          VisibilityIcon
+          Browse
         </MenuItem>
       </Menu>
     </>
