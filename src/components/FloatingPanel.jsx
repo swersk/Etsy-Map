@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, handleMarkers }) => {
+const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, handleMarkers, handleRadius }) => {
 
 const [itemSelected, setItemSelected] = useState('')
 
@@ -143,6 +143,7 @@ useEffect(() => {
       </Button>
       <Button
         id="change-radius"
+        onClick={handleRadius}
         className="e2moi"
         size="small"
         sx={{ color: '#000', background: 'white', marginRight: '10px' }}

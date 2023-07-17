@@ -13,6 +13,7 @@ const Map = () => {
   const [showHeatMap, setShowHeatMap] = useState(true);
   const [heatmap, setHeatmap] = useState(null);
   const [markers, setShowMarkers] = useState(true);
+  const [radius, setRadius] = useState(true);
 
   //parse CSV data
   useEffect(() => {
@@ -120,7 +121,11 @@ const Map = () => {
         });
 
         // customize heatmap layer
-        heatmap.set('radius', 20);
+        if (radius) {
+          heatmap.set('radius', 30)
+        } else {
+          heatmap.set('radius', 15)
+        }
         heatmap.set('opacity', 0.6);
       }
     };
@@ -150,15 +155,19 @@ const Map = () => {
       initMap();
     }
     setHeatmap(heatmap)
-  }, [data, showHeatMap, markers]);
+  }, [data, showHeatMap, markers, radius]);
 
   const handleMarkers = () => {
     setShowMarkers(!markers)
   }
 
+  const handleRadius = () => {
+    setRadius(!radius)
+  }
+
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers}/>
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius}/>
       <div id="map" ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
     </>
   );
