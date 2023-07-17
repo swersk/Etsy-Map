@@ -46,7 +46,7 @@ const Dropdown = () => {
 
   return (
     <>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+      <Box sx={{position: 'absolute', top: 6, right: 10, justifyContent: 'right'}}>
         <Tooltip title="More Options">
           <IconButton
             onClick={handleClick}
@@ -57,7 +57,7 @@ const Dropdown = () => {
             <Avatar sx={{ width: 42, height: 42 }} src="https://i.etsystatic.com/iusa/fef472/95287663/iusa_75x75.95287663_mbwt.jpg?version=0" alt="Lauren's avatar" />
           </IconButton>
         </Tooltip>
-      </Box>
+
       <Menu
         anchorEl={anchorEl}
         id="options-menu"
@@ -111,6 +111,7 @@ const Dropdown = () => {
             Download Shop Data
         </MenuItem>
       </Menu>
+      </Box>
     </>
   );
 };

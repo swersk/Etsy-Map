@@ -65,6 +65,30 @@ useEffect(() => {
     { src: 'https://i.etsystatic.com/12475356/c/1360/1081/778/…il/05100a/4233850976/il_75x75.4233850976_jnqh.jpg',
       title: '  Sticker, Buen Camino! (Camino de Santiago)'
     },
+    { src: 'https://i.etsystatic.com/12475356/r/il/3a78ef/4282184100/il_75x75.4282184100_ib1w.jpg',
+      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
+    },
+    { src: 'https://i.etsystatic.com/12475356/c/870/692/208/32…il/46e51f/4784511940/il_75x75.4784511940_58ta.jpg',
+      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
+    },
+    { src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
+      title: 'Bandages (3-pack), Camino de Santiago Plasters, 30 pcs per box'
+    },
+    { src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
+      title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
+    },
+    { src: '	https://i.etsystatic.com/12475356/c/2500/1987/224/…il/dbb022/4488832554/il_75x75.4488832554_6rqc.jpg',
+      title: 'Magnets (3pcs), Camino de Santiago'
+    },
+    { src: '	https://i.etsystatic.com/12475356/r/il/a3c20e/4075375872/il_75x75.4075375872_dpy7.jpg',
+      title: 'Italian Bandages, Italy Plasters, 30 pcs'
+    },
+    { src: '	https://i.etsystatic.com/12475356/r/il/595e7a/4372395533/il_75x75.4372395533_abtf.jpg',
+      title: 'Italian Bandages (2-pack), Italy Plasters, 30 pcs each'
+    },
+    { src: '	https://i.etsystatic.com/12475356/r/il/aa5f74/4379076555/il_75x75.4379076555_o6ft.jpg',
+      title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
+    },
   ];
 
   // useEffect(() => {
@@ -193,39 +217,3 @@ useEffect(() => {
 export default FloatingPanel;
 
 
-
-
-// //v1
-
-// // import React, { useState, useEffect } from 'react';
-
-// // const FloatingPanel = ({ setShowHeatMap, showHeatMap, heatmap }) => {
-
-// //   const handleToggle = () => {
-// //     setShowHeatMap(!showHeatMap);
-// //   };
-
-// //   return (
-// //     <div id="floating-panel" style={{
-// //       position: 'absolute',
-// //       top: '82px',
-// //       left: '200px',
-// //       zIndex: 1,
-// //       border: '1px solid #ccc',
-// //       borderRadius: '2px',
-// //       background: '#fff',
-// //       padding: '5px',
-// //       display: 'flex',
-// //       justifyContent: 'flex-start',
-// //       alignItems: 'center',
-// //     }}>
-// //       <button id="toggle-heatmap" onClick={handleToggle}>
-// //         Toggle Heatmap
-// //       </button>
-// //       <button id="change-radius">Change radius</button>
-// //       <button id="change-opacity">Change opacity</button>
-// //     </div>
-// //   );
-// // };
-
-// // export default FloatingPanel;
