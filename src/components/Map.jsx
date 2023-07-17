@@ -14,6 +14,7 @@ const Map = () => {
   const [heatmap, setHeatmap] = useState(null);
   const [markers, setShowMarkers] = useState(true);
 
+  //parse CSV data
   useEffect(() => {
     fetch('/Etsy2023G.csv')
       .then(response => response.blob())
@@ -39,6 +40,7 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
+    //create new map instance
     const initMap = () => {
       const mapOptions = {
         zoom: 4.5,
@@ -48,7 +50,7 @@ const Map = () => {
 
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
 
-      // Create markers from Marker constructor
+      // create marker instances
       if (showHeatMap && markers) {
         const markers = data.map(item => {
           const markerOptions = {
@@ -61,7 +63,7 @@ const Map = () => {
 
           const marker = new window.google.maps.Marker(markerOptions);
 
-          // Create infowindow content from InfoWindow constructor
+          // Create infowindow instances
           const infoWindowContent = `
             <div id='modalContent'>
               <div id='modalHeader'>
@@ -104,18 +106,18 @@ const Map = () => {
           return marker;
         });
 
-        // Create heatmap using HeatmapLayer constructor
+        // Create heatmap instance
         const heatmapData = data.map(item => {
           return new window.google.maps.LatLng(item.latitude, item.longitude);
         });
 
-        // Create heatmap layer
+        // create heatmap layer
         const heatmap = new window.google.maps.visualization.HeatmapLayer({
           data: heatmapData,
           map: mapInstanceRef.current
         });
 
-        // Customize heatmap layer
+        // customize heatmap layer
         heatmap.set('radius', 20);
         heatmap.set('opacity', 0.6);
       }
@@ -150,7 +152,7 @@ const Map = () => {
 
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} />
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data}/>
       <div id="map" ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
     </>
   );
