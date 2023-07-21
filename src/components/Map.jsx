@@ -1,10 +1,16 @@
+/* global google */
 import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
 import '../styles/App.css';
 import FloatingPanel from './FloatingPanel';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import RoomIcon from '@mui/icons-material/Room';
+import 'cesium/Build/Cesium/Widgets/widgets.css';
+
 
 const Map = () => {
   const [data, setData] = useState([]);
+  const [initialData, setInitialData] = useState([])
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [markerOpen, setMarkerOpen] = useState(false);
   const mapRef = useRef(null);
@@ -14,6 +20,14 @@ const Map = () => {
   const [heatmap, setHeatmap] = useState(null);
   const [markers, setShowMarkers] = useState(true);
   const [radius, setRadius] = useState(true);
+
+  const handleMarkers = () => {
+    setShowMarkers(!markers)
+  }
+
+  const handleRadius = () => {
+    setRadius(!radius)
+  }
 
   //parse CSV data
   useEffect(() => {
@@ -31,10 +45,15 @@ const Map = () => {
               date: item['Date Paid'],
               name: item['Ship Name'],
               quantity: item.Quantity,
+              address1: item['Ship Address1'],
+              city: item['Ship City'],
+              state: item['Ship State'],
+              zip: item['Ship Zipcode'],
               latitude: parseFloat(item.Latitude),
               longitude: parseFloat(item.Longitude)
             }));
             setData(addressData);
+            setInitialData(addressData);
           }
         });
       });
@@ -46,7 +65,8 @@ const Map = () => {
       const mapOptions = {
         zoom: 4.5,
         center: { lat: 40.967243, lng: -93.771556 },
-        mapId: '2894c194fdae4e32'
+        mapId: '2894c194fdae4e32',
+        streetViewControl: true
       };
 
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
@@ -66,22 +86,30 @@ const Map = () => {
 
           // Create infowindow instances
           const infoWindowContent = `
-            <div id='modalContent'>
-              <div id='modalHeader'>
-                <h2>More Info</h2>
+            <div id='modalContent' style={{ display: 'flex'}}>
+              <div>
+              <div>
+                <strong>Name:</strong> ${item.name}
               </div>
               <div>
-                <b>Name:</b> ${item.name}
+                    <RoomIcon/>
+              </div>
+              <div>
+              <b>Address:</b> ${item.address1}<br />
+                <div>
+                  ${item.city}, ${item.state} ${item.zip}
+                </div>
               </div>
               <div>
                 <b>Item:</b> ${item.item}
               </div>
               <div>
+                <b>Quantity:</b> ${item.quantity}
+              </div>
+
+              <div>
                 <b>Date:</b> ${item.date}
               </div>
-              <div>
-                <b>Quantity:</b> ${item.quantity}
-              </div><br />
             </div>
           `;
 
@@ -91,6 +119,7 @@ const Map = () => {
 
           // Add click handler
           marker.addListener('click', () => {
+
             setSelectedMarker(item);
             setMarkerOpen(true);
 
@@ -114,13 +143,13 @@ const Map = () => {
           return new window.google.maps.LatLng(item.latitude, item.longitude);
         });
 
-        // create heatmap layer
+        // Create heatmap layer
         const heatmap = new window.google.maps.visualization.HeatmapLayer({
           data: heatmapData,
           map: mapInstanceRef.current
         });
 
-        // customize heatmap layer
+        // Customize heatmap layer
         if (radius) {
           heatmap.set('radius', 30)
         } else {
@@ -130,8 +159,9 @@ const Map = () => {
       }
     };
 
+      // Check if Google API is loaded
     if (!window.google || !window.google.maps) {
-      // Google Maps API not loaded, so load it dynamically
+      // if not, load it dynamically
       const googleMapsScript = document.createElement('script');
       googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&callback=initMap`;
       googleMapsScript.async = true;
@@ -157,20 +187,64 @@ const Map = () => {
     setHeatmap(heatmap)
   }, [data, showHeatMap, markers, radius]);
 
-  const handleMarkers = () => {
-    setShowMarkers(!markers)
-  }
-
-  const handleRadius = () => {
-    setRadius(!radius)
-  }
-
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius}/>
-      <div id="map" ref={mapRef} style={{ width: '100%', height: '100%' }}></div>
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData}/>
+      <div id="map" ref={mapRef} style={{ width: '100%', height: '94%' }}></div>
     </>
   );
 };
 
 export default Map;
+
+
+
+
+//try this refactoring:
+// const initMap = (apiKey) => {
+//   const mapOptions = {
+//     zoom: 4.5,
+//     center: { lat: 40.967243, lng: -93.771556 },
+//     mapId: '2894c194fdae4e32',
+//     streetViewControl: true
+//   };
+
+//   mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
+
+//   // Rest of the code inside the initMap function remains unchanged.
+// };
+
+// useEffect(() => {
+//   // ...
+//   // Rest of your existing code.
+//   // ...
+
+//   // Check if Google API is loaded
+//   if (!window.google || !window.google.maps) {
+//     // if not, load it dynamically
+//     const googleMapsScript = document.createElement('script');
+//     googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&callback=initMap`;
+//     googleMapsScript.async = true;
+//     googleMapsScript.defer = true;
+//     googleMapsScript.onerror = () => {
+//       throw new Error('Failed to load Google Maps API script.');
+//     };
+
+//     // Check if the script has already been appended
+//     const existingScript = document.querySelector(
+//       'script[src^="https://maps.googleapis.com/maps/api/js?"]'
+//     );
+//     if (!existingScript) {
+//       document.head.appendChild(googleMapsScript);
+//     } else {
+//       existingScript.onload = () => initMap(process.env.REACT_APP_GOOGLE_API_KEY);
+//     }
+//     window.initMap = initMap;
+//   } else {
+//     // Google Maps API already loaded, so directly call initMap
+//     initMap(process.env.REACT_APP_GOOGLE_API_KEY);
+//   }
+//   setHeatmap(heatmap)
+// }, [data, showHeatMap, markers, radius]);
+
+// // ...

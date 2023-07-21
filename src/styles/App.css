@@ -3,20 +3,33 @@
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
-.gm-style .gm-style-mtc button {
-  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+/*button on top right of infowindow*/
+.gm-style-iw button {
+  margin-right: 8px !important;
+  margin-top: 5px !important;
 }
 
-#modalHeader {
-  color: black;
+.iw-container {
+  background-color:pink;
+}
+
+#floating-panel {
+  justify-content: center;
+  text-align: center;
+}
+
+/* #modalHeader {
+  background-color: lightblue;
   text-align: left;
   display: flex;
-}
+} */
 
 #modalContent {
   color: black;
   text-align: left;
+  font-size: 16px;
 }
+
 
 .wt-circle.wt-icon {
   border-radius: 50%;
@@ -63,6 +76,5 @@
 }
 
 #map {
-  width: 100%;
-  height: calc(100% - 40px);
+  width: 6000%;
 }

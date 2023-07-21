@@ -4,48 +4,66 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, handleMarkers, handleRadius }) => {
+const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
 
-const [itemSelected, setItemSelected] = useState('')
-
-useEffect(() => {
-  console.log('data', data)
-  const filterData = () => {
-    if (data.length > 0) {
-      const filteredData = data.filter(item => item.item === itemSelected);
-      console.log('Filtered data:', filteredData)
-      // pass the filtered data to map to trigger useEffect and change pins
-    }
-  };
-  filterData();
-}, [data, itemSelected]);
-
-  const handleToggle = () => {
-    setShowHeatMap(!showHeatMap);
-  };
-
+  const [itemSelected, setItemSelected] = useState('')
+  const [filteredMarkers, setFilteredMarkers] = useState(data);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleFilterClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  //when there's a new product selected from dropdown
+  useEffect(() => {
+    const filterData = () => {
+      //reset data to the entire array
+      setData(initialData)
+      if (data.length > 0) {
+        const filteredData = data.filter(item => item.item === itemSelected);
+        console.log('Filtered data:====', filteredData)
+        setData(filteredData)
+        // pass the filtered data to map to trigger useEffect and change pins
+      }
+    };
+    filterData();
+  }, [itemSelected]);
 
-  //  setSelectedProduct(product);
-  };
+  // //filter the markers
+  // useEffect(() => {
+  //   const filterMarkers = () => {
+  //     const selectedProduct = anchorEl ? anchorEl.textContent : null;
+  //     const filteredMarkers = selectedProduct
+  //       ? data.filter(item => item.title === selectedProduct)
+  //       : data;
+  //     setFilteredMarkers(filteredMarkers);
+  //   };
 
-  const handleSelection = (e) => {
-    let title = e.currentTarget.querySelector('.product-title span').textContent
-    setItemSelected(title)
-    console.log('Selected item title:', title);
-  }
+  //   filterMarkers();
+  // }, [anchorEl, data, setFilteredMarkers]);
 
-  //productTitle is a string
-  const handleFilterClose = () => {
-   // setSelectedProduct(productTitle);
-    setAnchorEl(null);
-  };
 
+
+    //toggle heatmap
+    const handleToggle = () => {
+      setShowHeatMap(!showHeatMap);
+    };
+
+    //retrieve product title from filter product dropdown
+    const handleSelection = (e) => {
+      let title = e.currentTarget.querySelector('.product-title span').textContent
+      setItemSelected(title)
+    }
+
+    const handleFilterClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    //  setSelectedProduct(product);
+    };
+
+    //productTitle is a string
+    const handleFilterClose = () => {
+    // setSelectedProduct(productTitle);
+      setAnchorEl(null);
+    };
+
+  //filter by product dropdown photos&titles
   const photos = [
-    //add the rest of the photos
     {
       src: "https://i.etsystatic.com/12475356/r/il/196c6f/4122318507/il_75x75.4122318507_38c6.jpg",
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
@@ -91,18 +109,6 @@ useEffect(() => {
     },
   ];
 
-  // useEffect(() => {
-  //   const filterMarkers = () => {
-  //     const selectedProduct = anchorEl ? anchorEl.textContent : null;
-  //     const filteredMarkers = selectedProduct
-  //       ? data.filter(item => item.title === selectedProduct)
-  //       : data;
-
-  //     setFilteredMarkers(filteredMarkers);
-  //   };
-
-  //   filterMarkers();
-  // }, [anchorEl, data, setFilteredMarkers]);
 
 
   return (
@@ -151,14 +157,6 @@ useEffect(() => {
         Change radius
       </Button>
       <Button
-        id="change-opacity"
-        className="e2moi"
-        size="small"
-        sx={{ color: '#000', background: 'white', marginRight: '10px' }}
-      >
-        Change opacity
-      </Button>
-      <Button
         id="filter-button"
         className="e2moi"
         size="small"
@@ -183,7 +181,7 @@ useEffect(() => {
         }}
       >
         {photos.map((photo, index) => (
-          <li key={index}>
+          <div key={index}>
             <MenuItem
               role="menuitem"
               className="list-nav-item width-full text-body unstyled-button"
@@ -217,7 +215,7 @@ useEffect(() => {
                 </div>
               </div>
             </MenuItem>
-          </li>
+          </div>
         ))}
       </Menu>
     </div>
