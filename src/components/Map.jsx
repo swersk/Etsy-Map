@@ -82,6 +82,15 @@ const Map = () => {
             map: mapInstanceRef.current
           };
 
+          if (item.item === "Italian Bandages, Italy Plasters, 30 pcs" && data.length < initialData.length) {
+            console.log('item.title====', item.item)
+            markerOptions.icon = {
+             // url: "/italy.png",
+             url: "italyBox.png",
+              scaledSize: new window.google.maps.Size(40, 40)
+            };
+          }
+
           const marker = new window.google.maps.Marker(markerOptions);
 
           // Create infowindow instances
@@ -151,9 +160,9 @@ const Map = () => {
 
         // Customize heatmap layer
         if (radius) {
-          heatmap.set('radius', 30)
+          heatmap.set('radius', 40)
         } else {
-          heatmap.set('radius', 15)
+          heatmap.set('radius', 25)
         }
         heatmap.set('opacity', 0.6);
       }
@@ -192,7 +201,12 @@ const Map = () => {
   return (
     <>
       <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData}/>
-      <div id="map" ref={mapRef} style={{ width: '100%', height: '94%' }}></div>
+      <div id="map" ref={mapRef}
+      style={{
+        width: '100%',
+        height: '94%'
+      }}
+        ></div>
     </>
   );
 };

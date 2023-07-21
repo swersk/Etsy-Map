@@ -115,6 +115,7 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
         borderRadius: '2px',
         background: '#F78333',
         padding: '5px',
+        marginLeft: '150px',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -146,7 +147,7 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
         size="small"
         sx={{ color: '#000', background: 'white', marginRight: '10px' }}
       >
-        Change radius
+        Change heatmapradius
       </Button>
       <Button
         id="filter-button"
