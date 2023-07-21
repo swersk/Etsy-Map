@@ -185,6 +185,8 @@ const Map = () => {
       initMap();
     }
     setHeatmap(heatmap)
+    console.log('data in Map.jsx:', data)
+    console.log('initialData in Map.jsx:', initialData.length)
   }, [data, showHeatMap, markers, radius]);
 
   return (

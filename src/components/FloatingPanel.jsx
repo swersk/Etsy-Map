@@ -14,31 +14,23 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
   useEffect(() => {
     const filterData = () => {
       //reset data to the entire array
-      setData(initialData)
+
       if (data.length > 0) {
-        const filteredData = data.filter(item => item.item === itemSelected);
-        console.log('Filtered data:====', filteredData)
+        const filteredData = initialData.filter(item => item.item === itemSelected);
+        console.log('Filtered data length::', filteredData.length)
+
         setData(filteredData)
+
         // pass the filtered data to map to trigger useEffect and change pins
       }
     };
     filterData();
   }, [itemSelected]);
 
-  // //filter the markers
-  // useEffect(() => {
-  //   const filterMarkers = () => {
-  //     const selectedProduct = anchorEl ? anchorEl.textContent : null;
-  //     const filteredMarkers = selectedProduct
-  //       ? data.filter(item => item.title === selectedProduct)
-  //       : data;
-  //     setFilteredMarkers(filteredMarkers);
-  //   };
-
-  //   filterMarkers();
-  // }, [anchorEl, data, setFilteredMarkers]);
-
-
+    const handleShowAll = () => {
+      setData(initialData)
+      console.log('data in show all', data.length)
+    }
 
     //toggle heatmap
     const handleToggle = () => {
@@ -160,10 +152,19 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
         id="filter-button"
         className="e2moi"
         size="small"
-        sx={{ color: '#000', background: 'white', cursor: 'pointer' }}
+        sx={{ color: '#000', background: 'white', cursor: 'pointer', marginRight: '10px' }}
         onClick={handleFilterClick}
       >
         Filter by Product
+      </Button>
+      <Button
+        id="showall-button"
+        className="e2moi"
+        size="small"
+        sx={{ color: '#000', background: 'white', cursor: 'pointer'}}
+        onClick={handleShowAll}
+      >
+        Show All
       </Button>
       <Menu
         anchorEl={anchorEl}
