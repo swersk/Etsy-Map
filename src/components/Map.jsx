@@ -4,8 +4,10 @@ import Papa from 'papaparse';
 import '../styles/App.css';
 import FloatingPanel from './FloatingPanel';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Icon } from "@mui/material";
 import RoomIcon from '@mui/icons-material/Room';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
+
 
 
 const Map = () => {
@@ -82,7 +84,7 @@ const Map = () => {
             map: mapInstanceRef.current
           };
 
-          if (item.item === "Italian Bandages, Italy Plasters, 30 pcs" && data.length < initialData.length) {
+          if (item.item.includes("Italian") && data.length < initialData.length) {
             console.log('item.title====', item.item)
             markerOptions.icon = {
               url: "/italy.png",
@@ -97,19 +99,30 @@ const Map = () => {
 
           const infoWindowContent = `
           <div id='modalContent'>
-            ${item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
-              <div>
-                <img src="/italyListingPic.avif" alt="Product image" style="width: 100px; height: 100px;" />
-              </div>
-            ` : ''}
-            ${item.item === "Camino de Santiago Bandages, Plasters, 30 pcs" ? `
-              <div>
-                <img src="/caminoColorful.avif" alt="Product image" style="width: 100px; height: 100px;" />
-              </div>
-            ` : ''}
+            ${
+              item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
+                <div>
+                  <img src="/italyListingPic.avif" alt="Product image" />
+                </div>
+              ` : item.item === "Italian Bandages (2-pack), Italy Plasters, 30 pcs each" ? `
+                <div>
+                  <img src="/italyListingPicx2.avif" alt="Product image" />
+                </div>
+              ` : item.item === "Italian Bandages (3-pack), Italy Plasters, 30 pcs each" ? `
+                <div>
+                  <img src="/italyListingPicx3.jpg" alt="Product image" />
+                </div>
+              ` : item.item === "Camino de Santiago Bandages, Plasters, 30 pcs" ? `
+                <div>
+                  <img src="/caminoColorful.avif" alt="Product image" />
+                </div>
+              ` : ''
+            }
             <div id="info-content">
               <div>
                 <strong>Name:</strong> ${item.name}
+
+               <LocationOnIcon />
               </div>
               <div>
                 <b>Address:</b> ${item.address1}<br />
