@@ -118,14 +118,14 @@ const Map = () => {
             }
             <div id="info-content">
               <div>
-              <img src="/person.png" class="infoImageName"> ${item.name}
+              <img src="/person.png"
+              class="infoImageName"> ${item.name}
               </div>
               <div>
-              <img src="/location.png" class="infoImageAddress"> ${item.address1}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              ${item.city}, ${item.state} ${item.zip}
+              <img src="/location2.png"  class="infoImageAddress"> ${item.address1}, &nbsp;${item.city}, ${item.state} ${item.zip}
               </div>
               <div>
-              <img src="/cart.png" class="infoImageItem"> ${item.item}
+              <img src="/item2.png" class="infoImageItem"> ${item.item}
               </div>
               <div >
               <img src="/info.png" class="infoImageQuantity"> ${item.quantity} item
