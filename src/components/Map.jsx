@@ -85,8 +85,8 @@ const Map = () => {
           if (item.item === "Italian Bandages, Italy Plasters, 30 pcs" && data.length < initialData.length) {
             console.log('item.title====', item.item)
             markerOptions.icon = {
-             // url: "/italy.png",
-             url: "italyBox.png",
+              url: "/italy.png",
+            // url: "italyBox.png",
               scaledSize: new window.google.maps.Size(40, 40)
             };
           }
@@ -94,17 +94,20 @@ const Map = () => {
           const marker = new window.google.maps.Marker(markerOptions);
 
           // Create infowindow instances
+
           const infoWindowContent = `
-            <div id='modalContent' style={{ display: 'flex'}}>
+          <div id='modalContent'>
+            ${item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
               <div>
+                <img src="https://i.etsystatic.com/12475356/r/il/a3c20e/4075375872/il_75x75.4075375872_dpy7.jpg" alt="Product image" />
+              </div>
+            ` : ''}
+            <div id="info-content">
               <div>
                 <strong>Name:</strong> ${item.name}
               </div>
               <div>
-                    <RoomIcon/>
-              </div>
-              <div>
-              <b>Address:</b> ${item.address1}<br />
+                <b>Address:</b> ${item.address1}<br />
                 <div>
                   ${item.city}, ${item.state} ${item.zip}
                 </div>
@@ -115,12 +118,13 @@ const Map = () => {
               <div>
                 <b>Quantity:</b> ${item.quantity}
               </div>
-
               <div>
                 <b>Date:</b> ${item.date}
               </div>
             </div>
-          `;
+          </div>
+        `;
+
 
           const infoWindow = new window.google.maps.InfoWindow({
             content: infoWindowContent

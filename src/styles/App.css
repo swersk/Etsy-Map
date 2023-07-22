@@ -3,6 +3,26 @@
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
+/*floating buttons*/
+button.google-button {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 3px 7px;
+  font-family: "Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
+}
+
+/* Style for the buttons on hover */
+button.google-button:hover {
+  background-color: #ddd;
+  color: #000
+}
+
 /*button on top right of infowindow*/
 .gm-style-iw button {
   margin-right: 8px !important;
@@ -18,16 +38,19 @@
   text-align: center;
 }
 
-/* #modalHeader {
-  background-color: lightblue;
-  text-align: left;
-  display: flex;
-} */
+
 
 #modalContent {
   color: black;
-  text-align: left;
   font-size: 16px;
+  display: flex;
+}
+
+
+#info-content {
+  text-align: left;
+  padding-left: 20px;
+  font-size: 13px;
 }
 
 

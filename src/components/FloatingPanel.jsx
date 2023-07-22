@@ -101,40 +101,38 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
     },
   ];
 
-
-
   return (
     <div
       id="floating-panel"
       style={{
         position: 'absolute',
-        top: '82px',
+        top: '79px',
         left: '200px',
         zIndex: 1,
         border: '1px solid #ccc',
         borderRadius: '2px',
         background: '#F78333',
         padding: '5px',
-        marginLeft: '150px',
         display: 'flex',
         justifyContent: 'flex-start',
         alignItems: 'center',
         fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
+
       }}
     >
       <Button
         id="toggle-heatmap"
         onClick={handleMarkers}
-        className="e2moi"
+        className="google-button"
         size="small"
-        sx={{ color: '#000', background: 'white', marginRight: '10px' }}
+        sx={{ color: '#000', background: 'white', marginRight: '10px', marginLeft: '9px' }}
       >
         Toggle Markers
       </Button>
       <Button
         id="toggle-heatmap"
         onClick={handleToggle}
-        className="e2moi"
+        className="google-button"
         size="small"
         sx={{ color: '#000', background: 'white', marginRight: '10px' }}
       >
@@ -143,15 +141,15 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
       <Button
         id="change-radius"
         onClick={handleRadius}
-        className="e2moi"
+        className="google-button"
         size="small"
         sx={{ color: '#000', background: 'white', marginRight: '10px' }}
       >
-        Change heatmapradius
+        Change heatmap radius
       </Button>
       <Button
         id="filter-button"
-        className="e2moi"
+        className="google-button"
         size="small"
         sx={{ color: '#000', background: 'white', cursor: 'pointer', marginRight: '10px' }}
         onClick={handleFilterClick}
@@ -160,7 +158,8 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
       </Button>
       <Button
         id="showall-button"
-        className="e2moi"
+       // className="e2moi"
+       className="google-button"
         size="small"
         sx={{ color: '#000', background: 'white', cursor: 'pointer'}}
         onClick={handleShowAll}
@@ -202,7 +201,8 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
                 cursor: 'pointer',
               }}
             >
-              <div onClick={handleSelection} className="flag" style={{ display: 'flex', alignItems: 'center' }}>
+              <div onClick={handleSelection} className="flag" style={{ display: 'flex', alignItems: 'center'
+             }}>
                 <div className="product-img">
                   <img
                     className="flag-img thumbnail mr-xs-2 height-50px width-50px"
