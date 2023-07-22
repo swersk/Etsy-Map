@@ -99,20 +99,20 @@ const Map = () => {
           <div id='modalContent'>
             ${
               item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
-                <div>
-                  <img src="/italyListingPic.avif" alt="Product image" />
+                <div >
+                  <img src="/italyListingPic.avif" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
               ` : item.item === "Italian Bandages (2-pack), Italy Plasters, 30 pcs each" ? `
-                <div>
-                  <img src="/italyListingPicx2.avif" alt="Product image" />
+                <div >
+                  <img src="/italyListingPicx2.avif" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
               ` : item.item === "Italian Bandages (3-pack), Italy Plasters, 30 pcs each" ? `
-                <div>
-                  <img src="/italyListingPicx3.jpg" alt="Product image" />
+                <div >
+                  <img src="/italyListingPicx3.jpg" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
               ` : item.item === "Camino de Santiago Bandages, Plasters, 30 pcs" ? `
                 <div>
-                  <img src="/caminoColorful.avif" alt="Product image" />
+                  <img src="/caminoColorful.avif" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
               ` : ''
             }
@@ -127,9 +127,9 @@ const Map = () => {
               <div>
               <img src="/item2.png" class="infoImageItem"> ${item.item}
               </div>
-              <div >
-              <img src="/info.png" class="infoImageQuantity"> ${item.quantity} item
-              </div>
+              <div>
+              <img src="/info.png" class="infoImageQuantity"> ${item.quantity} item${item.quantity > 1 ? 's' : ''}
+            </div>
               <div>
               <img src="/date.png" class="infoImageDate"> ${item.date}
               </div>
