@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
 import '../styles/App.css';
 import FloatingPanel from './FloatingPanel';
+import FunFact from './FunFact.jsx';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { Icon } from "@mui/material";
 import RoomIcon from '@mui/icons-material/Room';
@@ -228,6 +229,9 @@ const Map = () => {
         height: '94%'
       }}
         ></div>
+        <div className="fun-fact-container">
+        <FunFact data={data} setData={setData}/>
+      </div>
     </>
   );
 };

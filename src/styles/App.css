@@ -3,6 +3,12 @@
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
+.fun-fact-container {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
 /*floating buttons*/
 button.google-button {
   background-color: #fff;
