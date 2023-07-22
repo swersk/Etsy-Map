@@ -99,7 +99,12 @@ const Map = () => {
           <div id='modalContent'>
             ${item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
               <div>
-                <img src="https://i.etsystatic.com/12475356/r/il/a3c20e/4075375872/il_75x75.4075375872_dpy7.jpg" alt="Product image" />
+                <img src="/italyListingPic.avif" alt="Product image" style="width: 100px; height: 100px;" />
+              </div>
+            ` : ''}
+            ${item.item === "Camino de Santiago Bandages, Plasters, 30 pcs" ? `
+              <div>
+                <img src="/caminoColorful.avif" alt="Product image" style="width: 100px; height: 100px;" />
               </div>
             ` : ''}
             <div id="info-content">
@@ -124,7 +129,6 @@ const Map = () => {
             </div>
           </div>
         `;
-
 
           const infoWindow = new window.google.maps.InfoWindow({
             content: infoWindowContent

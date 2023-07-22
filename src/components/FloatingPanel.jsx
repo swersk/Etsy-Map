@@ -57,7 +57,7 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
   //filter by product dropdown photos&titles
   const photos = [
     {
-      src: "https://i.etsystatic.com/12475356/r/il/196c6f/4122318507/il_75x75.4122318507_38c6.jpg",
+      src: "/caminoColorful.avif",
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
     },
     { src: 'https://i.etsystatic.com/12475356/r/il/9b34b1/4740924743/il_75x75.4740924743_suz9.jpg',
@@ -90,13 +90,13 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
     { src: '	https://i.etsystatic.com/12475356/c/2500/1987/224/…il/dbb022/4488832554/il_75x75.4488832554_6rqc.jpg',
       title: 'Magnets (3pcs), Camino de Santiago'
     },
-    { src: '	https://i.etsystatic.com/12475356/r/il/a3c20e/4075375872/il_75x75.4075375872_dpy7.jpg',
+    { src: '	/italyListingPic.avif',
       title: 'Italian Bandages, Italy Plasters, 30 pcs'
     },
-    { src: '	https://i.etsystatic.com/12475356/r/il/595e7a/4372395533/il_75x75.4372395533_abtf.jpg',
+    { src: '/italyListingPicx2.avif',
       title: 'Italian Bandages (2-pack), Italy Plasters, 30 pcs each'
     },
-    { src: '	https://i.etsystatic.com/12475356/r/il/aa5f74/4379076555/il_75x75.4379076555_o6ft.jpg',
+    { src: 'italyListingPicx3.jpg',
       title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
     },
   ];
