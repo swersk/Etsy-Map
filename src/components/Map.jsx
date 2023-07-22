@@ -4,9 +4,6 @@ import Papa from 'papaparse';
 import '../styles/App.css';
 import FloatingPanel from './FloatingPanel';
 import FunFact from './FunFact.jsx';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { Icon } from "@mui/material";
-import RoomIcon from '@mui/icons-material/Room';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
 
@@ -121,24 +118,20 @@ const Map = () => {
             }
             <div id="info-content">
               <div>
-                <strong>Name:</strong> ${item.name}
-
-               <LocationOnIcon />
+              <img src="/person.png" class="infoImageName"> ${item.name}
               </div>
               <div>
-                <b>Address:</b> ${item.address1}<br />
-                <div>
-                  ${item.city}, ${item.state} ${item.zip}
-                </div>
+              <img src="/location.png" class="infoImageAddress"> ${item.address1}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              ${item.city}, ${item.state} ${item.zip}
               </div>
               <div>
-                <b>Item:</b> ${item.item}
+              <img src="/cart.png" class="infoImageItem"> ${item.item}
+              </div>
+              <div >
+              <img src="/info.png" class="infoImageQuantity"> ${item.quantity} item
               </div>
               <div>
-                <b>Quantity:</b> ${item.quantity}
-              </div>
-              <div>
-                <b>Date:</b> ${item.date}
+              <img src="/date.png" class="infoImageDate"> ${item.date}
               </div>
             </div>
           </div>

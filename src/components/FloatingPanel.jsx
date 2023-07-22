@@ -60,25 +60,7 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
       src: "/caminoColorful.avif",
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
     },
-    { src: 'https://i.etsystatic.com/12475356/r/il/9b34b1/4740924743/il_75x75.4740924743_suz9.jpg',
-      title: 'Camino de Santiago Bandages, Plasters, 30 pcs'
-    },
-    { src: 'https://i.etsystatic.com/12475356/r/il/004e5a/4740976481/il_75x75.4740976481_fqy7.jpg',
-      title: 'Camino de Santiago Bandages, Plasters, 30 pcs'
-    },
-    { src: 'https://i.etsystatic.com/12475356/c/1000/794/1000/…il/05d94e/4278333409/il_75x75.4278333409_iwrw.jpg',
-      title: 'Sticker, Buen Camino! (Camino de Santiago)'
-    },
-    { src: 'https://i.etsystatic.com/12475356/c/1080/858/535/9…il/cb45b7/4230175724/il_75x75.4230175724_mc7h.jpg',
-      title: 'Sticker, Buen Camino! (Camino de Santiago)'
-    },
-    { src: 'https://i.etsystatic.com/12475356/c/1360/1081/778/…il/05100a/4233850976/il_75x75.4233850976_jnqh.jpg',
-      title: '  Sticker, Buen Camino! (Camino de Santiago)'
-    },
     { src: 'https://i.etsystatic.com/12475356/r/il/3a78ef/4282184100/il_75x75.4282184100_ib1w.jpg',
-      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
-    },
-    { src: 'https://i.etsystatic.com/12475356/c/870/692/208/32…il/46e51f/4784511940/il_75x75.4784511940_58ta.jpg',
       title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
     },
     { src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
@@ -87,9 +69,7 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
     { src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
       title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
-    { src: '	https://i.etsystatic.com/12475356/c/2500/1987/224/…il/dbb022/4488832554/il_75x75.4488832554_6rqc.jpg',
-      title: 'Magnets (3pcs), Camino de Santiago'
-    },
+
     { src: '	/italyListingPic.avif',
       title: 'Italian Bandages, Italy Plasters, 30 pcs'
     },
@@ -225,5 +205,4 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
 };
 
 export default FloatingPanel;
-
 

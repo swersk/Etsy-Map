@@ -1,7 +1,7 @@
 import React from 'react';
 import Map from './components/Map.jsx';
 import Dropdown from './components/Dropdown.jsx';
-import FunFact from './components/FunFact.jsx';
+
 import './styles/App.css';
 
 function App() {
