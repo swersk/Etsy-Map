@@ -7,10 +7,10 @@ EtsyMap is a web application that visualizes sales data from an Etsy store on a 
 
 # Table of Contents
 
-• Demo
-• Features
-• License
-• v2 Additions
+• Demo <br />
+• Features <br />
+• License <br />
+• v2 Additions <br />
 • Contact
  
 # Demo
@@ -19,12 +19,12 @@ Demo hurrrr>
 
 # Features
 
-• Display sales data as markers on a Google Map
-• View sales data as a heatmap
-• Toggle markers and heatmap on/off
-• Clickable markers with information about each sale
-• Filter sales data by product
-• Responsive and user-friendly interface
+• Display sales data as markers on a Google Map <br />
+• View sales data as a heatmap <br />
+• Toggle markers and heatmap on/off<br />
+• Clickable markers with information about each sale<br />
+• Filter sales data by product<br />
+• Responsive and user-friendly interface<br />
 
 # Licence
 
