@@ -32,14 +32,14 @@ This project is licensed under the MIT License.
 
 # v2 Additions
 
-• View sales trends (MoM and YoY)
-• Buyer reviews included
-• AI-generated fun facts about sales data
+• View sales trends (MoM and YoY)<br />
+• Buyer reviews included<br />
+• AI-generated fun facts about sales data<br />
 
 # Contact
 
 If you have any questions or suggestions, please feel free to contact the project maintainer:
 
-Name: Lauren Swersky
+Name: Lauren Swersky<br />
 Email: lauren.swersky@gmail.com
 
