@@ -7,11 +7,11 @@ EtsyMap is a web application that visualizes sales data from an Etsy store on a 
 
 ## Table of Contents
 
-1. [Demo] (##Demo)<br />
-2. [Features] (#features) <br />
-3. [License] (#license) <br />
-4. [v2 Additions] (#v2-additions) <br />
-5. [Contact] (#contact)
+1. [Demo](#demo)<br />
+2. [Features](#features) <br />
+3. [License](#license) <br />
+4. [v2 Additions](#v2-additions) <br />
+5. [Contact](#contact)
  
 ## Demo
 
