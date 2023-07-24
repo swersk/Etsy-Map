@@ -7,76 +7,69 @@ import MenuItem from '@mui/material/MenuItem';
 const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
 
   const [itemSelected, setItemSelected] = useState('')
-  const [filteredMarkers, setFilteredMarkers] = useState(data);
   const [anchorEl, setAnchorEl] = useState(null);
 
-  //when there's a new product selected from dropdown
   useEffect(() => {
     const filterData = () => {
-      //reset data to the entire array
-
       if (data.length > 0) {
         const filteredData = initialData.filter(item => item.item === itemSelected);
         console.log('Filtered data length::', filteredData.length)
-
         setData(filteredData)
-
-        // pass the filtered data to map to trigger useEffect and change pins
       }
     };
     filterData();
   }, [itemSelected]);
 
-    const handleShowAll = () => {
-      setData(initialData)
-      console.log('data in show all', data.length)
-    }
+  const handleShowAll = () => {
+    setData(initialData)
+    console.log('data in show all', data.length)
+  }
 
-    //toggle heatmap
-    const handleToggle = () => {
-      setShowHeatMap(!showHeatMap);
-    };
+  const handleToggle = () => {
+    setShowHeatMap(!showHeatMap);
+  };
 
-    //retrieve product title from filter product dropdown
-    const handleSelection = (e) => {
-      let title = e.currentTarget.querySelector('.product-title span').textContent
-      setItemSelected(title)
-    }
+  // Retrieve product title from filter dropdown
+  const handleSelection = (e) => {
+    let title = e.currentTarget.querySelector('.product-title span').textContent
+    setItemSelected(title)
+  }
 
-    const handleFilterClick = (event) => {
-      setAnchorEl(event.currentTarget);
-    //  setSelectedProduct(product);
-    };
+  const handleFilterClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-    //productTitle is a string
-    const handleFilterClose = () => {
-    // setSelectedProduct(productTitle);
-      setAnchorEl(null);
-    };
+  const handleFilterClose = () => {
+    setAnchorEl(null);
+  };
 
-  //filter by product dropdown photos&titles
   const photos = [
     {
       src: "/caminoColorful.avif",
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
     },
-    { src: 'https://i.etsystatic.com/12475356/r/il/3a78ef/4282184100/il_75x75.4282184100_ib1w.jpg',
+    {
+      src: 'https://i.etsystatic.com/12475356/r/il/3a78ef/4282184100/il_75x75.4282184100_ib1w.jpg',
       title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
     },
-    { src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
+    {
+      src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
       title: 'Bandages (3-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
-    { src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
+    {
+      src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
       title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
-
-    { src: '	/italyListingPic.avif',
+    {
+      src: '	/italyListingPic.avif',
       title: 'Italian Bandages, Italy Plasters, 30 pcs'
     },
-    { src: '/italyListingPicx2.avif',
+    {
+      src: '/italyListingPicx2.avif',
       title: 'Italian Bandages (2-pack), Italy Plasters, 30 pcs each'
     },
-    { src: 'italyListingPicx3.jpg',
+    {
+      src: 'italyListingPicx3.jpg',
       title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
     },
   ];
@@ -138,10 +131,9 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
       </Button>
       <Button
         id="showall-button"
-       // className="e2moi"
-       className="google-button"
+        className="google-button"
         size="small"
-        sx={{ color: '#000', background: 'white', cursor: 'pointer'}}
+        sx={{ color: '#000', background: 'white', cursor: 'pointer' }}
         onClick={handleShowAll}
       >
         Show All
@@ -181,8 +173,9 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
                 cursor: 'pointer',
               }}
             >
-              <div onClick={handleSelection} className="flag" style={{ display: 'flex', alignItems: 'center'
-             }}>
+              <div onClick={handleSelection} className="flag" style={{
+                display: 'flex', alignItems: 'center'
+              }}>
                 <div className="product-img">
                   <img
                     className="flag-img thumbnail mr-xs-2 height-50px width-50px"

@@ -1,10 +1,8 @@
-
 /* global google */
 import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
 import '../styles/App.css';
 import FloatingPanel from './FloatingPanel';
-import FunFact from './FunFact.jsx';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
 
@@ -61,7 +59,7 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    //create new map instance
+    // Create new map instance
     const initMap = () => {
       const mapOptions = {
         zoom: 4.5,
@@ -72,8 +70,8 @@ const Map = () => {
 
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
 
-      // create marker instances
-        if (markers) {
+      // Create marker instances
+      if (markers) {
         const markers = data.map(item => {
           const markerOptions = {
             position: {
@@ -84,10 +82,8 @@ const Map = () => {
           };
 
           if (item.item.includes("Italian") && data.length < initialData.length) {
-            console.log('item.title====', item.item)
             markerOptions.icon = {
               url: "/italy.png",
-            // url: "italyBox.png",
               scaledSize: new window.google.maps.Size(40, 40)
             };
           }
@@ -95,11 +91,9 @@ const Map = () => {
           const marker = new window.google.maps.Marker(markerOptions);
 
           // Create infowindow instances
-
           const infoWindowContent = `
           <div id='modalContent'>
-            ${
-              item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
+            ${item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
                 <div >
                   <img src="/italyListingPic.avif" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
@@ -135,12 +129,7 @@ const Map = () => {
         <div>
           <img src="/1sticker.jpg" alt="Product image" style="width: 100px; height: 100px;"/>
         </div>
-      `
-
-
-
-
-          : ''
+      `   : ''
             }
             <div id="info-content">
               <div>
@@ -188,7 +177,7 @@ const Map = () => {
 
       };
 
-        if (showHeatMap) {
+      if (showHeatMap) {
         // Create heatmap instance
         const heatmapData = data.map(item => {
           return new window.google.maps.LatLng(item.latitude, item.longitude);
@@ -210,7 +199,7 @@ const Map = () => {
       }
     };
 
-      // Check if Google API is loaded
+    // Check if Google API is loaded
     if (!window.google || !window.google.maps) {
       // if not, load it dynamically
       const googleMapsScript = document.createElement('script');
@@ -239,17 +228,16 @@ const Map = () => {
   }, [data, showHeatMap, markers, radius]);
 
 
-
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData}/>
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData} />
       <div id="map" ref={mapRef}
-      style={{
-        width: '100%',
-        height: '94%'
-      }}
-        ></div>
-        <div className="fun-fact-container">
+        style={{
+          width: '100%',
+          height: '94%'
+        }}
+      ></div>
+      <div className="fun-fact-container">
       </div>
     </>
   );
@@ -260,64 +248,3 @@ export default Map;
 
 
 
-
-
-////
-//
-////
-////
-////REFACTOR PSEUDOCODE BELOW
-////
-////
-//
-//
-//
-//
-//try this refactoring:
-// const initMap = (apiKey) => {
-//   const mapOptions = {
-//     zoom: 4.5,
-//     center: { lat: 40.967243, lng: -93.771556 },
-//     mapId: '2894c194fdae4e32',
-//     streetViewControl: true
-//   };
-
-//   mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
-
-//   // Rest of the code inside the initMap function remains unchanged.
-// };
-
-// useEffect(() => {
-//   // ...
-//   // Rest of your existing code.
-//   // ...
-
-//   // Check if Google API is loaded
-//   if (!window.google || !window.google.maps) {
-//     // if not, load it dynamically
-//     const googleMapsScript = document.createElement('script');
-//     googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&callback=initMap`;
-//     googleMapsScript.async = true;
-//     googleMapsScript.defer = true;
-//     googleMapsScript.onerror = () => {
-//       throw new Error('Failed to load Google Maps API script.');
-//     };
-
-//     // Check if the script has already been appended
-//     const existingScript = document.querySelector(
-//       'script[src^="https://maps.googleapis.com/maps/api/js?"]'
-//     );
-//     if (!existingScript) {
-//       document.head.appendChild(googleMapsScript);
-//     } else {
-//       existingScript.onload = () => initMap(process.env.REACT_APP_GOOGLE_API_KEY);
-//     }
-//     window.initMap = initMap;
-//   } else {
-//     // Google Maps API already loaded, so directly call initMap
-//     initMap(process.env.REACT_APP_GOOGLE_API_KEY);
-//   }
-//   setHeatmap(heatmap)
-// }, [data, showHeatMap, markers, radius]);
-
-// // ...

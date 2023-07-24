@@ -1,3 +1,5 @@
+// //Draft for v2
+
 // import { useState } from 'react';
 
 // const FunFact = ({ data, setData }) => {
@@ -36,13 +38,10 @@
 //     'Lowest state here',
 //   ];
 
-//   // Function to show the next fun fact in order
 //   const showNextFunFact = () => {
 //     if (funFactIndex >= funFacts.length) {
-//       // If the index is out of range, reset to zero
 //       setFunFactIndex(0);
 //     } else {
-//       // Otherwise, increment the index to show the next fun fact
 //       setFunFactIndex((prevIndex) => prevIndex + 1);
 //     }
 //   };
@@ -61,8 +60,3 @@
 // };
 
 // export default FunFact;
-
-// //Top state
-// //States I haven't sold to yet
-// //Most sold product
-// //On this day in the past, you made these sales
