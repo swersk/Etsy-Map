@@ -9,7 +9,7 @@ EtsyMap is a web application that visualizes sales data from an Etsy store on a 
 
 1. [Demo](#demo)<br />
 2. [Features](#features) <br />
-3. [v2 Additions](#v2-additions) <br />
+3. [v2](#v2-additions) <br />
 4. [License](#license) <br /> 
 5. [Contact](#contact)
  
@@ -26,10 +26,11 @@ Demo hurrrr>
 • Filter sales data by product<br />
 • Responsive and user-friendly interface<br />
 
-## v2 Additions
+## v2 
 
+In the upcoming iteration, I'd like to add the following features:
 • View sales trends (MoM and YoY)<br />
-• Buyer reviews included<br />
+• Buyer reviews included in Infowindows<br />
 • AI-generated fun facts about sales data<br />
 
 ## License
