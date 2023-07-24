@@ -9,8 +9,8 @@ EtsyMap is a web application that visualizes sales data from an Etsy store on a 
 
 1. [Demo](#demo)<br />
 2. [Features](#features) <br />
-3. [License](#license) <br />
-4. [v2 Additions](#v2-additions) <br />
+3. [v2 Additions](#v2-additions) <br />
+4. [License](#license) <br /> 
 5. [Contact](#contact)
  
 ## Demo
@@ -26,15 +26,15 @@ Demo hurrrr>
 • Filter sales data by product<br />
 • Responsive and user-friendly interface<br />
 
-## License
-
-This project is licensed under the MIT License.
-
 ## v2 Additions
 
 • View sales trends (MoM and YoY)<br />
 • Buyer reviews included<br />
 • AI-generated fun facts about sales data<br />
+
+## License
+
+This project is licensed under the MIT License.
 
 # Contact
 
