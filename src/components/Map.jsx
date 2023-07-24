@@ -195,7 +195,7 @@ const Map = () => {
         } else {
           heatmap.set('radius', 25)
         }
-        heatmap.set('opacity', 0.6);
+        heatmap.set('opacity', 0.7);
       }
     };
 
