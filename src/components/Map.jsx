@@ -1,3 +1,4 @@
+
 /* global google */
 import React, { useState, useEffect, useRef } from 'react';
 import Papa from 'papaparse';
@@ -106,6 +107,10 @@ const Map = () => {
                 <div >
                   <img src="/italyListingPicx2.avif" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
+              ` : item.item === "Italian bandages, 30 pcs" ? `
+              <div >
+                 <img src="/italyListingPic.avif" alt="Product image" style="width: 100px; height: 100px;"/>
+               </div>
               ` : item.item === "Italian Bandages (3-pack), Italy Plasters, 30 pcs each" ? `
                 <div >
                   <img src="/italyListingPicx3.jpg" alt="Product image" style="width: 100px; height: 100px;"/>
@@ -114,7 +119,28 @@ const Map = () => {
                 <div>
                   <img src="/caminoColorful.avif" alt="Product image" style="width: 100px; height: 100px;"/>
                 </div>
-              ` : ''
+              ` : item.item === "Fun Sticker Pack (3 pcs), Camino de Santiago" ? `
+              <div>
+                <img src="/3stickers.jpg" alt="Product image" style="width: 100px; height: 100px;"/>
+              </div>
+            `  : item.item === "Sticker Pack (4 pcs), Camino de Santiago" ? `
+            <div>
+              <img src="/4stickers.avif" alt="Product image" style="width: 100px; height: 100px;"/>
+            </div>
+          `  : item.item === "Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box" || "Bandages, Plasters (2 pack) - Camino de Santiago" ? `
+          <div>
+            <img src="/2pack.avif" alt="Product image" style="width: 100px; height: 100px;"/>
+          </div>
+        `: item.item === "Sticker, Buen Camino! (Camino de Santiago)" || item.item === "Sticker, Buen Camino de Santiago" ? `
+        <div>
+          <img src="/1sticker.jpg" alt="Product image" style="width: 100px; height: 100px;"/>
+        </div>
+      `
+
+
+
+
+          : ''
             }
             <div id="info-content">
               <div>
@@ -159,6 +185,7 @@ const Map = () => {
 
           return marker;
         })
+
       };
 
         if (showHeatMap) {
@@ -209,9 +236,9 @@ const Map = () => {
       initMap();
     }
     setHeatmap(heatmap)
-    console.log('data in Map.jsx:', data)
-    console.log('initialData in Map.jsx:', initialData.length)
   }, [data, showHeatMap, markers, radius]);
+
+
 
   return (
     <>
@@ -223,7 +250,6 @@ const Map = () => {
       }}
         ></div>
         <div className="fun-fact-container">
-        <FunFact data={data} setData={setData}/>
       </div>
     </>
   );
@@ -234,6 +260,19 @@ export default Map;
 
 
 
+
+
+////
+//
+////
+////
+////REFACTOR PSEUDOCODE BELOW
+////
+////
+//
+//
+//
+//
 //try this refactoring:
 // const initMap = (apiKey) => {
 //   const mapOptions = {
