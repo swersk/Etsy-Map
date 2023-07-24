@@ -26,7 +26,7 @@ Demo hurrrr>
 • Filter sales data by product<br />
 • Responsive and user-friendly interface<br />
 
-## Licence
+## License
 
 This project is licensed under the MIT License.
 
