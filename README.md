@@ -7,11 +7,11 @@ EtsyMap is a web application that visualizes sales data from an Etsy store on a 
 
 ## Table of Contents
 
-• [Demo] (##Demo)<br />
-• [Features] (#features) <br />
-• [License] (#license) <br />
-• [v2 Additions] (#v2-additions) <br />
-• [Contact] (#contact)
+1. [Demo] (##Demo)<br />
+2. [Features] (#features) <br />
+3. [License] (#license) <br />
+4. [v2 Additions] (#v2-additions) <br />
+5. [Contact] (#contact)
  
 ## Demo
 
@@ -43,3 +43,4 @@ If you have any questions or suggestions, please feel free to contact the projec
 Name: Lauren Swersky<br />
 Email: lauren.swersky@gmail.com
 
+[(Back to top)] (#table-of-contents)
