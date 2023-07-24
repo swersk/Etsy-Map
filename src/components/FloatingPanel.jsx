@@ -78,7 +78,7 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
       id="floating-panel"
       style={{
         position: 'absolute',
-        top: '79px',
+        top: '85px',
         left: '200px',
         zIndex: 1,
         border: '1px solid #ccc',
