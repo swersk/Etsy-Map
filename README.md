@@ -48,5 +48,3 @@ If you have any questions or suggestions, please feel free to contact the projec
 
 Name: Lauren Swersky<br />
 Email: lauren.swersky@gmail.com
-
-[(Back to top)] (#table-of-contents)
