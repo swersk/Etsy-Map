@@ -3,12 +3,6 @@
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
-.fun-fact-container {
-  position: absolute;
-  bottom: 30px;
-  left: 30px;
-}
-
 
 /*floating buttons*/
 button.google-button {
@@ -32,24 +26,18 @@ button.google-button:hover {
 
 /*button on top right of infowindow*/
 .gm-style-iw button {
-  margin-right: 8px !important;
-  margin-top: 5px !important;
+  margin-right: 10px !important;
+  margin-top: 7px !important;
 }
 
-.iw-container {
-  background-color:pink;
-}
-
-#floating-panel {
-  justify-content: center;
-  text-align: center;
-}
 
 #modalContent {
   color: black;
   font-size: 16px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
+  max-width: none;
 }
 
 #modalContent #info-content img {
@@ -84,19 +72,6 @@ button.google-button:hover {
   margin-right: 30px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-  width: 200px;
-  height: 100px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #fff;
   display: flex;
@@ -113,14 +88,6 @@ button.google-button:hover {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 #map {
   width: 6000%;

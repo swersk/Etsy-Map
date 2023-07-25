@@ -10,7 +10,7 @@ function App() {
       <header
         className="App-header"
         style={{
-          height: '75px',
+          height: '70px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',

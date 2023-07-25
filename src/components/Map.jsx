@@ -53,7 +53,6 @@ const Map = () => {
               address1: item['Ship Address1'],
               city: item['Ship City'],
               state: item['Ship State'],
-              zip: item['Ship Zipcode'],
               latitude: parseFloat(item.Latitude),
               longitude: parseFloat(item.Longitude)
             }));
@@ -163,7 +162,7 @@ const Map = () => {
               class="infoImageName"> ${item.name}
               </div>
               <div>
-              <img src="/location2.png"  class="infoImageAddress" style="margin-right: 13px;">${item.city}, ${item.state} ${item.zip}
+              <img src="/location2.png"  class="infoImageAddress" style="margin-right: 13px;">${item.city}, ${item.state}
               </div>
               <div>
               <img src="/item2.png" class="infoImageItem"> ${item.item}
@@ -257,14 +256,12 @@ const Map = () => {
   return (
     <>
       <FloatingPanel setShowMarkers={setShowMarkers} setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData} filteredData={filteredData} setFilteredData={setFilteredData}/>
-      <div id="map" ref={mapRef}
+      <div id="map" ref={mapRef} className="map-container"
         style={{
           width: '100%',
           height: '94%'
         }}
       ></div>
-      <div className="fun-fact-container">
-      </div>
     </>
   );
 };
