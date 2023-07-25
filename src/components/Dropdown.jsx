@@ -41,15 +41,25 @@ const Dropdown = () => {
 
   return (
     <>
-      <Box sx={{ position: 'absolute', top: 6, right: 10, justifyContent: 'right' }}>
-        <Tooltip title="More Options">
+      <Box sx={{
+        position: 'absolute',
+        top: 8,
+        right: 3,
+        justifyContent: 'right',
+        cursor: 'pointer',
+        '&hover': {
+          background: '#555',
+        }
+        }}
+        >
+        <Tooltip title="Shop Info">
           <IconButton
             onClick={handleClick}
             aria-controls={open ? 'options-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 42, height: 42 }} src="https://i.etsystatic.com/iusa/fef472/95287663/iusa_75x75.95287663_mbwt.jpg?version=0" alt="Lauren's avatar" />
+            <Avatar sx={{ width: 42, height: 42 }} src="/shop2.png" alt="Lauren's avatar" />
           </IconButton>
         </Tooltip>
 

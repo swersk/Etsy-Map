@@ -82,27 +82,27 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
   ];
 
   return (
+    <>
     <div
       id="floating-panel"
       style={{
         position: 'absolute',
-        top: '620px',
+        bottom: '33px',
         left: '9px',
-        width: '170px',
         zIndex: 1,
-        border: '1px solid #ccc',
-        borderRadius: '2px',
-        background: '#f5f5f5',
-        padding: '5px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
-
+        fontFamily: "Arial",
       }}
     >
-
+    <div style={{
+        border: '1px solid #ccc',
+        borderRadius: '2px',
+        background: '#f5f5f5',
+        padding: '5px',
+    }}>
     <FormGroup>
       <Stack direction="column" alignItems="center">
         <FormLabel>Markers</FormLabel>
@@ -129,26 +129,44 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
         </Stack>
       </Stack>
     </FormGroup>
+    </div>
+    <div style={{width: "100%"}}>
+    <Button
+        id="showall-button"
+        className="google-button"
+        style={{
+          // color: '#rgba(0, 0, 0, 0.6);',
+          color: '#000000',
+          fontSize: '17px',
+          fontWeight: '400',
+          background: '#f5f5f5',
+          cursor: 'pointer',
+          border: '1px #DADADA solid',
+          marginTop: '7px',
+          borderRadius: '2px',
+          width: '100%',
+          textTransform: 'none',
+          padding: '5px 9px',
+          fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+        }}
+          onClick={handleShowAll}
+      >
+        Show All
+      </Button>
+    </div>
+    </div>
 
-
+  <div>
       <Button
         id="filter-button"
         className="google-button"
         size="small"
-        sx={{ color: '#000', background: 'white', cursor: 'pointer', marginRight: '10px' }}
+        sx={{ color: '#000', background: '#ddd', cursor: 'pointer', fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif" }}
         onClick={handleFilterClick}
       >
         Filter by Product
       </Button>
-      <Button
-        id="showall-button"
-        className="google-button"
-        size="small"
-        sx={{ color: '#000', background: 'white', cursor: 'pointer' }}
-        onClick={handleShowAll}
-      >
-        Show All
-      </Button>
+
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -204,7 +222,8 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
           </div>
         ))}
       </Menu>
-    </div>
+      </div>
+      </>
   );
 };
 

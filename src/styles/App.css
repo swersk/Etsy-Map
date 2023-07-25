@@ -1,15 +1,16 @@
+#map {
+  width: 100%
+}
+
 .App {
   text-align: center;
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
 }
 
-
 /*floating buttons*/
 button.google-button {
   background-color: #fff;
   color: #000;
-  border: 1px solid #ccc;
-  padding: 8px 14px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
@@ -29,7 +30,6 @@ button.google-button:hover {
   margin-right: 10px !important;
   margin-top: 7px !important;
 }
-
 
 #modalContent {
   color: black;
@@ -89,6 +89,3 @@ button.google-button:hover {
 }
 
 
-#map {
-  width: 6000%;
-}
