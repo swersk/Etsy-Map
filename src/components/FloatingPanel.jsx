@@ -107,6 +107,16 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleFilterClose}
+            //to not hide the button when expanded
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'left',
+            }}
+            //other styling
             PaperProps={{
               style: {
                 boxShadow: 'none',

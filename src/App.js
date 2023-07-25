@@ -10,7 +10,7 @@ function App() {
       <header
         className="App-header"
         style={{
-          height: '70px',
+          height: '66px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -20,9 +20,9 @@ function App() {
           <h2
             style={{
               color: '#F56400',
-              fontSize: '28px',
+              fontSize: '29px',
               fontWeight: '700',
-              marginTop: '23px',
+              marginTop: '19px',
             }}
           >
             Etsy Sales Map
