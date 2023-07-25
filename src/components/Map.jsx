@@ -24,6 +24,11 @@ const Map = () => {
     setShowMarkers(!markers)
   }
 
+  const formatName = (string) => {
+    //return string split at the space
+    return string.split(' ')[0]
+  }
+
   const handleRadius = () => {
     setRadius(!radius)
   }
@@ -40,7 +45,7 @@ const Map = () => {
           complete: function (results) {
             const addressData = results.data.map(item => ({
               item: item['Item Name'],
-              buyer: item.Buyer.split(' ')[0],
+              buyer: formatName(item.Buyer),
               date: item['Date Paid'],
               name: item['Ship Name'],
               quantity: item.Quantity,
