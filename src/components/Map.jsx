@@ -235,7 +235,7 @@ const Map = () => {
 
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData} filteredData={filteredData} setFilteredData={setFilteredData}/>
+      <FloatingPanel setShowMarkers={setShowMarkers} setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData} filteredData={filteredData} setFilteredData={setFilteredData}/>
       <div id="map" ref={mapRef}
         style={{
           width: '100%',

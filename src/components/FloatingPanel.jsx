@@ -2,8 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Switch from '@mui/material/Switch';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
-const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
+import FormLabel from '@mui/material/FormLabel';
+
+const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
 
   const [itemSelected, setItemSelected] = useState('')
   const [anchorEl, setAnchorEl] = useState(null);
@@ -19,7 +27,9 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
   }, [itemSelected]);
 
   const handleShowAll = () => {
-    setData(initialData)
+    setData(initialData);
+    setShowHeatMap(true);
+    setShowMarkers(true);
   }
 
   const handleToggle = () => {
@@ -90,33 +100,36 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
 
       }}
     >
-      <Button
-        id="toggle-heatmap"
-        onClick={handleMarkers}
-        className="google-button"
-        size="small"
-        sx={{ color: '#000', background: 'white', marginRight: '10px', marginLeft: '9px' }}
-      >
-        Toggle Markers
-      </Button>
-      <Button
-        id="toggle-heatmap"
-        onClick={handleToggle}
-        className="google-button"
-        size="small"
-        sx={{ color: '#000', background: 'white', marginRight: '10px' }}
-      >
-        Toggle Heatmap
-      </Button>
-      <Button
-        id="change-radius"
-        onClick={handleRadius}
-        className="google-button"
-        size="small"
-        sx={{ color: '#000', background: 'white', marginRight: '10px' }}
-      >
-        Change heatmap radius
-      </Button>
+
+
+
+
+<FormGroup>
+      <Stack direction="column" alignItems="center">
+        <FormLabel>Markers</FormLabel>
+        <Stack direction="row" alignItems="center">
+          <Typography>Off</Typography>
+          <Switch onChange={handleMarkers} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+          <Typography>On</Typography>
+        </Stack>
+      </Stack>
+      <Stack direction="column" alignItems="center">
+        <FormLabel>Heatmap</FormLabel>
+        <Stack direction="row" alignItems="center">
+          <Typography>Off</Typography>
+          <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+          <Typography>On</Typography>
+        </Stack>
+      </Stack>
+      <Stack direction="column" alignItems="center">
+        <FormLabel>HeatMap Radius</FormLabel>
+        <Stack direction="row" alignItems="center">
+          <Typography>Small</Typography>
+          <Switch onChange={handleRadius} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+          <Typography>Large</Typography>
+        </Stack>
+      </Stack>
+    </FormGroup>
       <Button
         id="filter-button"
         className="google-button"
@@ -195,4 +208,5 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
 };
 
 export default FloatingPanel;
+
 
