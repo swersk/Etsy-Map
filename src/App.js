@@ -17,26 +17,15 @@ function App() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <img
-            src="./Etsy.png"
-            alt="Etsy logo"
-            style={{
-              width: '70px',
-              height: '70px',
-              marginRight: '10px',
-              marginTop: '7px',
-            }}
-          />
           <h2
             style={{
               color: '#F56400',
               fontSize: '28px',
               fontWeight: '700',
-              marginBottom: '0',
-              marginTop: '5px',
+              marginTop: '23px',
             }}
           >
-            Sales Map
+            Etsy Sales Map
           </h2>
         </div>
         <Dropdown />

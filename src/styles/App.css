@@ -74,6 +74,10 @@ button.google-button:hover {
   margin-bottom: 4px;
 }
 
+.infoImageAddress {
+  margin-right: '20px';
+}
+
 .wt-circle.wt-icon {
   border-radius: 50%;
   transform: scaleX(0.7) scaleY(0.7) perspective(1px);

@@ -12,7 +12,6 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
     const filterData = () => {
       if (data.length > 0) {
         const filteredData = initialData.filter(item => item.item === itemSelected);
-        console.log('Filtered data length::', filteredData.length)
         setData(filteredData)
       }
     };
@@ -21,7 +20,6 @@ const FloatingPanel = ({ setShowHeatMap, showHeatMap, data, setData, handleMarke
 
   const handleShowAll = () => {
     setData(initialData)
-    console.log('data in show all', data.length)
   }
 
   const handleToggle = () => {

@@ -6,7 +6,6 @@ import FloatingPanel from './FloatingPanel';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
 
-
 const Map = () => {
   const [data, setData] = useState([]);
   const [initialData, setInitialData] = useState([])
@@ -19,6 +18,7 @@ const Map = () => {
   const [heatmap, setHeatmap] = useState(null);
   const [markers, setShowMarkers] = useState(true);
   const [radius, setRadius] = useState(true);
+  const [filteredData, setFilteredData] = useState([]);
 
   const handleMarkers = () => {
     setShowMarkers(!markers)
@@ -40,7 +40,7 @@ const Map = () => {
           complete: function (results) {
             const addressData = results.data.map(item => ({
               item: item['Item Name'],
-              buyer: item.Buyer,
+              buyer: item.Buyer.split(' ')[0],
               date: item['Date Paid'],
               name: item['Ship Name'],
               quantity: item.Quantity,
@@ -71,7 +71,7 @@ const Map = () => {
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
 
       // Create marker instances
-      if (markers) {
+      if (markers && data) {
         const markers = data.map(item => {
           const markerOptions = {
             position: {
@@ -137,7 +137,7 @@ const Map = () => {
               class="infoImageName"> ${item.name}
               </div>
               <div>
-              <img src="/location2.png"  class="infoImageAddress"> ${item.address1}, &nbsp;${item.city}, ${item.state} ${item.zip}
+              <img src="/location2.png"  class="infoImageAddress" style="margin-right: 13px;">${item.city}, ${item.state} ${item.zip}
               </div>
               <div>
               <img src="/item2.png" class="infoImageItem"> ${item.item}
@@ -230,7 +230,7 @@ const Map = () => {
 
   return (
     <>
-      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData} />
+      <FloatingPanel setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} heatmap={heatmap} data={data} setData={setData} handleMarkers={handleMarkers} handleRadius={handleRadius} initialData={initialData} filteredData={filteredData} setFilteredData={setFilteredData}/>
       <div id="map" ref={mapRef}
         style={{
           width: '100%',
