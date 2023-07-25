@@ -86,14 +86,16 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
       id="floating-panel"
       style={{
         position: 'absolute',
-        top: '85px',
-        left: '200px',
+        top: '400px',
+        right: '10px',
+        width: '170px',
         zIndex: 1,
         border: '1px solid #ccc',
         borderRadius: '2px',
-        background: '#F78333',
+        background: '#f5f5f5',
         padding: '5px',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
         fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
@@ -101,10 +103,7 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
       }}
     >
 
-
-
-
-<FormGroup>
+    <FormGroup>
       <Stack direction="column" alignItems="center">
         <FormLabel>Markers</FormLabel>
         <Stack direction="row" alignItems="center">
@@ -130,6 +129,8 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
         </Stack>
       </Stack>
     </FormGroup>
+
+
       <Button
         id="filter-button"
         className="google-button"
