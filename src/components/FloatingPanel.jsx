@@ -15,6 +15,8 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 
 const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
 
+
+  const [buttonRef, setButtonRef] = useState(null);
   const [itemSelected, setItemSelected] = useState('')
   const [anchorEl, setAnchorEl] = useState(null);
   const [showAllSelected, setShowAllSelected] = useState(true);
@@ -53,6 +55,8 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
   const handleFilterClose = () => {
     setAnchorEl(null);
   };
+
+
 
   const photos = [
     {
@@ -109,13 +113,14 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
             onClose={handleFilterClose}
             //to not hide the button when expanded
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
+              vertical: 'bottom', //menu positioned below the button
+              horizontal: 'right', //menu positioned to the right of the button
             }}
             transformOrigin={{
               vertical: 'top',
               horizontal: 'left',
             }}
+            getContentAnchorEl={null} // Disable the default anchor handling
             //other styling
             PaperProps={{
               style: {
@@ -207,6 +212,7 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
         <div style={{ width: "100%" }}>
           <div style={{ marginBottom: '7px', background: '#f5f5f5' }}>
             <Button
+             ref={setButtonRef}
               id="filter-button"
               className="google-button"
               sx={{
