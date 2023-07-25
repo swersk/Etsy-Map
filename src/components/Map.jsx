@@ -45,9 +45,9 @@ const Map = () => {
           complete: function (results) {
             const addressData = results.data.map(item => ({
               item: item['Item Name'],
-              buyer: formatName(item.Buyer),
+              buyer: item.buyer,
               date: item['Date Paid'],
-              name: item['Ship Name'],
+              name: formatName(item['Ship Name']),
               quantity: item.Quantity,
               address1: item['Ship Address1'],
               city: item['Ship City'],
