@@ -100,7 +100,7 @@ const Dropdown = () => {
         >
           <MenuItem onClick={openShop}>
             <Avatar src="https://i.etsystatic.com/isla/330fa4/56457224/isla_180x180.56457224_t77zstsm.jpg?version=0" />
-            My Account
+            Visit the Shop
           </MenuItem>
           <Divider />
           <MenuItem onClick={handleContact}>
@@ -113,7 +113,7 @@ const Dropdown = () => {
             <ListItemIcon>
               <GetAppIcon fontSize="small" />
             </ListItemIcon>
-            Download Shop Data
+            Shop Data
           </MenuItem>
         </Menu>
       </Box>

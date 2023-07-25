@@ -9,11 +9,15 @@ import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import FormLabel from '@mui/material/FormLabel';
+import Divider from '@mui/material/Divider';
+import FilterListIcon from '@mui/icons-material/FilterList';
+
 
 const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
 
   const [itemSelected, setItemSelected] = useState('')
   const [anchorEl, setAnchorEl] = useState(null);
+  const [showAllSelected, setShowAllSelected] = useState(true);
 
   useEffect(() => {
     const filterData = () => {
@@ -29,6 +33,7 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
     setData(initialData);
     setShowHeatMap(true);
     setShowMarkers(true);
+    setShowAllSelected(!showAllSelected)
   }
 
   const handleToggle = () => {
@@ -82,169 +87,170 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
 
   return (
     <>
-    <div
-      id="floating-panel"
-      style={{
-        position: 'absolute',
-        bottom: '33px',
-        left: '9px',
-        zIndex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        fontFamily: "Arial",
-      }}
-    >
-
-<div style={{width: '100%'}}>
-      <Button
-        id="filter-button"
-        size="small"
-        sx={{
-          color: '#000000',
-          fontSize: '17px',
-          fontWeight: '400',
-          background: '#f5f5f5',
-          border: '1px #DADADA solid',
-          textTransform: 'none',
-          marginBottom: '7px',
-          padding: '5px 9px',
-          width: '100%',
-          borderRadius: '2px',
-          cursor: 'pointer',
-          fontFamily: "Roboto, Helvetica, Arial, sans-serif",
-          '&:hover': {
-            background: '#ccc',
-          },
-        }}
-          onClick={handleFilterClick}
-      >
-        Filter by Product
-      </Button>
-
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleFilterClose}
-        PaperProps={{
-          style: {
-            boxShadow: 'none',
-          },
-        }}
-        MenuListProps={{
-          style: {
-            padding: 0,
-          },
+      <div
+        id="floating-panel"
+        style={{
+          position: 'absolute',
+          bottom: '33px',
+          left: '9px',
+          zIndex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
+          fontFamily: "Arial",
         }}
       >
-        {photos.map((photo, index) => (
-          <div key={index}>
-            <MenuItem
-              role="menuitem"
-              className="list-nav-item width-full text-body unstyled-button"
-              onClick={handleFilterClose}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                backgroundColor: 'transparent',
-                '&:hover': {
-                  backgroundColor: '#f1f1f1',
-                },
-                fontFamily:
-                  'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
-                fontSize: '14px',
-                color: '#222',
-                cursor: 'pointer',
-              }}
-            >
-              <div onClick={handleSelection} className="flag" style={{
-                display: 'flex', alignItems: 'center'
-              }}>
-                <div className="product-img">
-                  <img
-                    className="flag-img thumbnail mr-xs-2 height-50px width-50px"
 
-                    src={photo.src}
-                    alt={photo.title}
-                    style={{ border: '0.5px solid #D3D3D3', height: '50x', width: '50px' }}
-                  />
-                </div>
-                <div className="product-title" style={{ marginLeft: '15px' }}>
-                  <span>{photo.title}</span>
-                </div>
+        <div style={{ width: '100%' }}>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleFilterClose}
+            PaperProps={{
+              style: {
+                boxShadow: 'none',
+              },
+            }}
+            MenuListProps={{
+              style: {
+                padding: 0,
+              },
+            }}
+          >
+            {photos.map((photo, index) => (
+              <div key={index}>
+                <MenuItem
+                  role="menuitem"
+                  className="list-nav-item width-full text-body unstyled-button"
+                  onClick={handleFilterClose}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    backgroundColor: 'transparent',
+                    '&:hover': {
+                      backgroundColor: '#f1f1f1',
+                    },
+                    fontFamily:
+                      'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+                    fontSize: '14px',
+                    color: '#222',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <div onClick={handleSelection} className="flag" style={{
+                    display: 'flex', alignItems: 'center'
+                  }}>
+                    <div className="product-img">
+                      <img
+                        className="flag-img thumbnail mr-xs-2 height-50px width-50px"
+
+                        src={photo.src}
+                        alt={photo.title}
+                        style={{ border: '0.5px solid #D3D3D3', height: '50x', width: '50px' }}
+                      />
+                    </div>
+                    <div className="product-title" style={{ marginLeft: '15px' }}>
+                      <span>{photo.title}</span>
+                    </div>
+                  </div>
+                </MenuItem>
               </div>
-            </MenuItem>
+            ))}
+          </Menu>
+        </div>
+
+        <div style={{
+          border: '1px solid #ccc',
+          borderRadius: '2px',
+          background: '#f5f5f5',
+          padding: '5px',
+          marginBottom: '7px'
+        }}>
+          <FormGroup>
+            <Stack direction="column" alignItems="center">
+              <FormLabel>Markers</FormLabel>
+              <Stack direction="row" alignItems="center">
+                <Typography>Off</Typography>
+                <Switch onChange={handleMarkers} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+                <Typography>On</Typography>
+              </Stack>
+            </Stack>
+            <Stack direction="column" alignItems="center">
+              <FormLabel>Heatmap</FormLabel>
+              <Stack direction="row" alignItems="center">
+                <Typography>Off</Typography>
+                <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+                <Typography>On</Typography>
+              </Stack>
+            </Stack>
+            <Stack direction="column" alignItems="center">
+              <FormLabel>HeatMap Radius</FormLabel>
+              <Stack direction="row" alignItems="center">
+                <Typography>Small</Typography>
+                <Switch onChange={handleRadius} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+                <Typography>Large</Typography>
+              </Stack>
+            </Stack>
+          </FormGroup>
+        </div>
+        <div style={{ width: "100%" }}>
+          <div style={{ marginBottom: '7px', background: '#f5f5f5' }}>
+            <Button
+              id="filter-button"
+              className="google-button"
+              sx={{
+                color: '#000000',
+                fontSize: '17px',
+                fontWeight: '400',
+                background: '#f5f5f5',
+                textTransform: 'none',
+                padding: '5px 9px',
+                width: '100%',
+                cursor: 'pointer',
+                fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+                '&:hover': {
+                  background: '#ccc',
+                },
+              }}
+              onClick={handleFilterClick}
+            >
+                  <FilterListIcon sx={{marginRight: '6px'}}/>
+                  <span >Filter</span>
+
+            </Button>
+            <Divider orientation="horizontal" sx={{
+              width: '100%',
+              height: '1px',
+              backgroundColor: '#ccc',
+              margin: '0',
+            }} />
+            <Button
+              id="showall-button"
+              className="google-button"
+              sx={{
+                color: '#000000',
+                fontSize: '17px',
+                fontWeight: '400',
+                background: '#f5f5f5',
+                textTransform: 'none',
+                width: '100%',
+                cursor: 'pointer',
+                fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+                '&:hover': {
+                  background: '#ccc',
+                },
+              }}
+              onClick={handleShowAll}
+            >
+              Show All
+            </Button>
           </div>
-        ))}
-      </Menu>
+        </div>
       </div>
 
-    <div style={{
-        border: '1px solid #ccc',
-        borderRadius: '2px',
-        background: '#f5f5f5',
-        padding: '5px',
-    }}>
-    <FormGroup>
-      <Stack direction="column" alignItems="center">
-        <FormLabel>Markers</FormLabel>
-        <Stack direction="row" alignItems="center">
-          <Typography>Off</Typography>
-          <Switch onChange={handleMarkers} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-          <Typography>On</Typography>
-        </Stack>
-      </Stack>
-      <Stack direction="column" alignItems="center">
-        <FormLabel>Heatmap</FormLabel>
-        <Stack direction="row" alignItems="center">
-          <Typography>Off</Typography>
-          <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-          <Typography>On</Typography>
-        </Stack>
-      </Stack>
-      <Stack direction="column" alignItems="center">
-        <FormLabel>HeatMap Radius</FormLabel>
-        <Stack direction="row" alignItems="center">
-          <Typography>Small</Typography>
-          <Switch onChange={handleRadius} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-          <Typography>Large</Typography>
-        </Stack>
-      </Stack>
-    </FormGroup>
-    </div>
-    <div style={{width: "100%"}}>
-    <Button
-        id="showall-button"
-        className="google-button"
-        style={{
-          color: '#000000',
-          fontSize: '17px',
-          fontWeight: '400',
-          background: '#f5f5f5',
-          cursor: 'pointer',
-          border: '1px #DADADA solid',
-          marginTop: '7px',
-          borderRadius: '2px',
-          width: '100%',
-          textTransform: 'none',
-          padding: '5px 9px',
-          fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
-          '&:hover': {
-            background: '#ccc',
-          },
-        }}
-          onClick={handleShowAll}
-      >
-        Show All
-      </Button>
-    </div>
-    </div>
-
-      </>
+    </>
   );
 };
 
 export default FloatingPanel;
-
-
