@@ -8,7 +8,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-
 import FormLabel from '@mui/material/FormLabel';
 
 const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
@@ -97,72 +96,29 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
         fontFamily: "Arial",
       }}
     >
-    <div style={{
-        border: '1px solid #ccc',
-        borderRadius: '2px',
-        background: '#f5f5f5',
-        padding: '5px',
-    }}>
-    <FormGroup>
-      <Stack direction="column" alignItems="center">
-        <FormLabel>Markers</FormLabel>
-        <Stack direction="row" alignItems="center">
-          <Typography>Off</Typography>
-          <Switch onChange={handleMarkers} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-          <Typography>On</Typography>
-        </Stack>
-      </Stack>
-      <Stack direction="column" alignItems="center">
-        <FormLabel>Heatmap</FormLabel>
-        <Stack direction="row" alignItems="center">
-          <Typography>Off</Typography>
-          <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-          <Typography>On</Typography>
-        </Stack>
-      </Stack>
-      <Stack direction="column" alignItems="center">
-        <FormLabel>HeatMap Radius</FormLabel>
-        <Stack direction="row" alignItems="center">
-          <Typography>Small</Typography>
-          <Switch onChange={handleRadius} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-          <Typography>Large</Typography>
-        </Stack>
-      </Stack>
-    </FormGroup>
-    </div>
-    <div style={{width: "100%"}}>
-    <Button
-        id="showall-button"
-        className="google-button"
-        style={{
-          // color: '#rgba(0, 0, 0, 0.6);',
+
+<div style={{width: '100%'}}>
+      <Button
+        id="filter-button"
+        size="small"
+        sx={{
           color: '#000000',
           fontSize: '17px',
           fontWeight: '400',
           background: '#f5f5f5',
-          cursor: 'pointer',
           border: '1px #DADADA solid',
-          marginTop: '7px',
-          borderRadius: '2px',
-          width: '100%',
           textTransform: 'none',
+          marginBottom: '7px',
           padding: '5px 9px',
+          width: '100%',
+          borderRadius: '2px',
+          cursor: 'pointer',
           fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+          '&:hover': {
+            background: '#ccc',
+          },
         }}
-          onClick={handleShowAll}
-      >
-        Show All
-      </Button>
-    </div>
-    </div>
-
-  <div>
-      <Button
-        id="filter-button"
-        className="google-button"
-        size="small"
-        sx={{ color: '#000', background: '#ddd', cursor: 'pointer', fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif" }}
-        onClick={handleFilterClick}
+          onClick={handleFilterClick}
       >
         Filter by Product
       </Button>
@@ -223,6 +179,68 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
         ))}
       </Menu>
       </div>
+
+    <div style={{
+        border: '1px solid #ccc',
+        borderRadius: '2px',
+        background: '#f5f5f5',
+        padding: '5px',
+    }}>
+    <FormGroup>
+      <Stack direction="column" alignItems="center">
+        <FormLabel>Markers</FormLabel>
+        <Stack direction="row" alignItems="center">
+          <Typography>Off</Typography>
+          <Switch onChange={handleMarkers} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+          <Typography>On</Typography>
+        </Stack>
+      </Stack>
+      <Stack direction="column" alignItems="center">
+        <FormLabel>Heatmap</FormLabel>
+        <Stack direction="row" alignItems="center">
+          <Typography>Off</Typography>
+          <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+          <Typography>On</Typography>
+        </Stack>
+      </Stack>
+      <Stack direction="column" alignItems="center">
+        <FormLabel>HeatMap Radius</FormLabel>
+        <Stack direction="row" alignItems="center">
+          <Typography>Small</Typography>
+          <Switch onChange={handleRadius} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+          <Typography>Large</Typography>
+        </Stack>
+      </Stack>
+    </FormGroup>
+    </div>
+    <div style={{width: "100%"}}>
+    <Button
+        id="showall-button"
+        className="google-button"
+        style={{
+          color: '#000000',
+          fontSize: '17px',
+          fontWeight: '400',
+          background: '#f5f5f5',
+          cursor: 'pointer',
+          border: '1px #DADADA solid',
+          marginTop: '7px',
+          borderRadius: '2px',
+          width: '100%',
+          textTransform: 'none',
+          padding: '5px 9px',
+          fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+          '&:hover': {
+            background: '#ccc',
+          },
+        }}
+          onClick={handleShowAll}
+      >
+        Show All
+      </Button>
+    </div>
+    </div>
+
       </>
   );
 };

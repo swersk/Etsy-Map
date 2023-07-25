@@ -19,12 +19,6 @@ button.google-button {
   font-family: "Guardian-EgypTT",Charter,"Charter Bitstream",Cambria,"Noto Serif Light","Droid Serif",Georgia,serif;
 }
 
-/* Style for the buttons on hover */
-button.google-button:hover {
-  background-color: #ddd;
-  color: #000
-}
-
 /*button on top right of infowindow*/
 .gm-style-iw button {
   margin-right: 10px !important;
@@ -62,6 +56,10 @@ button.google-button:hover {
   margin-bottom: 4px;
 }
 
+.google-button:hover {
+  background: #ccc;
+}
+
 .infoImageAddress {
   margin-right: '20px';
 }
@@ -83,9 +81,4 @@ button.google-button:hover {
   border-bottom: 2px solid #F56400
 }
 /*  background-color: #FDE0CC;;*/
-
-.App-link {
-  color: #61dafb;
-}
-
 

@@ -70,7 +70,7 @@ const Map = () => {
       } else if (window.innerWidth <= 1024) {
           setInitialZoom(4.0);  // For iPads
       } else  {
-        setInitialZoom(5.0); // For computers
+        setInitialZoom(4.5); // For computers
       }
     };
 
@@ -88,7 +88,7 @@ const Map = () => {
     const initMap = () => {
       const mapOptions = {
         zoom: initialZoom,
-        center: window.innerWidth <= 1024 ? { lat: 41.267243, lng: -93.771556 } : { lat: 41.267243, lng: -98.5795 },
+        center: window.innerWidth <= 1024 ? {  lat: 41.267243, lng: -93.771556  } : { lat: 41.167243, lng: -98.5795},
         mapId: '2894c194fdae4e32',
         streetViewControl: true
       };
