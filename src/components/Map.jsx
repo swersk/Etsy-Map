@@ -19,6 +19,7 @@ const Map = () => {
   const [markers, setShowMarkers] = useState(true);
   const [radius, setRadius] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
+  const [initialZoom, setInitialZoom] = useState(4.5);
 
   const handleMarkers = () => {
     setShowMarkers(!markers)
@@ -64,11 +65,31 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setInitialZoom(3.1); // Set a lower initial zoom level for mobile
+      } else if (window.innerWidth <= 1024) {
+          setInitialZoom(4.0);  // For iPads
+      } else  {
+        setInitialZoom(4.5); // For computers
+      }
+    };
+
+    // Call the handleResize function initially and whenever the window is resized
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+
+  useEffect(() => {
     // Create new map instance
     const initMap = () => {
       const mapOptions = {
-        zoom: 4.5,
-        center: { lat: 40.967243, lng: -93.771556 },
+        zoom: initialZoom,
+        center: window.innerWidth <= 1024 ? { lat: 40.967243, lng: -93.771556 } : { lat: 40.967243, lng: -98.5795 },
         mapId: '2894c194fdae4e32',
         streetViewControl: true
       };
