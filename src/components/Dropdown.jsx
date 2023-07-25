@@ -31,14 +31,6 @@ const Dropdown = () => {
     setOpen(false);
   };
 
-  const handleContact = () => {
-    const emailAddress = 'ms.swersky@gmail.com';
-    const subject = 'Regarding your Etsy sales map';
-    const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}`;
-    window.location.href = mailtoUrl;
-  };
-
-
   return (
     <>
       <Box sx={{
@@ -103,17 +95,11 @@ const Dropdown = () => {
             Visit the Shop
           </MenuItem>
           <Divider />
-          <MenuItem onClick={handleContact}>
-            <ListItemIcon>
-              <CreateIcon fontSize="small" />
-            </ListItemIcon>
-            Contact
-          </MenuItem>
           <MenuItem onClick={handleDownload}>
             <ListItemIcon>
               <GetAppIcon fontSize="small" />
             </ListItemIcon>
-            Shop Data
+            Sales Data
           </MenuItem>
         </Menu>
       </Box>
