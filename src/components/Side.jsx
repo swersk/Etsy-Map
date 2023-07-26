@@ -8,9 +8,13 @@ import Avatar from '@mui/material/Avatar';
 import { useState } from 'react';
 import { Drawer, Icon, Button, ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { styled, useTheme } from '@mui/material/styles';
 
 const Side = () => {
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
   const handleFilterClose = () => {
   //  setAnchorEl(null);
@@ -21,6 +25,10 @@ const Side = () => {
     // let title = e.currentTarget.querySelector('.product-title span').textContent
     // setItemSelected(title)
     console.log('test in Side')
+  }
+
+  const handleDrawerClose = () => {
+    setOpen(false);
   }
 
   const photos = [
@@ -58,15 +66,41 @@ const Side = () => {
   const getList = () => (
     <div style={{ width: 250 }} onClick={() => setOpen(false)}>
       {photos.map((photo, index) => (
-        <ListItem button key={index} onClick={handleFilterClose}>
+        <ListItem button key={index}>
           <ListItemAvatar>
             <Avatar src={photo.src} sx={{ border: '0.5px solid #D3D3D3', height: '50px', width: '50px' }} />
           </ListItemAvatar>
-          <ListItemText sx={{ marginLeft: '15px' }} primary={photo.title} />
+          {photo.title.includes('Italian') && photo.title.includes('2-pack') ? (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={'Italian (2-pack)'} />
+          ) : photo.title.includes('Italian') && photo.title.includes('3-pack') ? (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={'Italian (3-pack)'} />
+          ) : photo.title.includes('Italian') ? (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={'Italian'} />
+          ) : photo.title.includes('Camino') && photo.title.includes('2-pack') ? (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={'Camino (2-pack)'} />
+          ) : photo.title.includes('Camino') && photo.title.includes('3-pack') ? (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={'Camino (3-pack)'} />
+          ) : photo.title.includes('Camino') ? (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={'Camino'} />
+          ) : (
+            <ListItemText sx={{ marginLeft: '15px' }} primary={photo.title} />
+          )}
         </ListItem>
       ))}
     </div>
   );
+
+
+  const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  }));
+
+
 
   return (
     <>
@@ -79,25 +113,19 @@ const Side = () => {
         onClose={() => setOpen(false)}
         anchor="left"
         icon={<Icon>menu</Icon>}
+        variant="persistent"
       >
+          <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <Divider />
         {getList()}
+
       </Drawer>
     </>
   );
 };
 
 export default Side;
-
- // const data = [
-  //   {
-  //     name: "Home",
-  //   },
-  //   { name: "Trash"}
-  // ];
-
-  // {data.map((item, index) => (
-  //   <ListItem button key={index}>
-  //     <ListItemIcon>{item.icon}</ListItemIcon>
-  //     <ListItemText primary={item.name} />
-  //   </ListItem>
-  // ))}
