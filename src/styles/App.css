@@ -18,7 +18,11 @@
   border-bottom: 2px solid #F56400;
   line-height: 0.3;
 }
-/*  background-color: #FDE0CC;;*/
+
+h2 {
+  margin: 0 auto;
+}
+
 
 /*infowindow*/
 .gm-style-iw button {

@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Side />
+        <Side className="Side"/>
           <h2>Etsy Sales Map</h2>
-        <Dropdown/>
+        <Dropdown className="Dropdown"/>
       </header>
       <Map />
     </div>
