@@ -15,9 +15,9 @@ const Map = () => {
   const mapInstanceRef = useRef(null);
   const infoWindowsRef = useRef({});
   const [showHeatMap, setShowHeatMap] = useState(true);
-  const [heatmap, setHeatmap] = useState(null);
+  const [heatmap, setHeatmap] = useState(true);
   const [markers, setShowMarkers] = useState(true);
-  const [radius, setRadius] = useState(55);
+  const [radius, setRadius] = useState(20);
   const [filteredData, setFilteredData] = useState([]);
   const [initialZoom, setInitialZoom] = useState(4.5);
   const [markersArr, setMarkersArr] = useState([]);
@@ -28,7 +28,6 @@ const Map = () => {
   }
 
   const formatName = (string) => {
-    //return string split at the space
     return string.split(' ')[0]
   }
 
@@ -73,6 +72,7 @@ const Map = () => {
       } else {
         setInitialZoom(4.6); // For computers
         setCenter({ lat: 38.167243, lng: -98.5795 });
+        setRadius(40)
       }
     };
 
@@ -214,7 +214,6 @@ const Map = () => {
     if (!window.google || !window.google.maps) {
       return
     } else {
-
       // Create heatmap instance
       const heatmapData = data.map(item => {
         return new window.google.maps.LatLng(item.latitude, item.longitude);
@@ -227,9 +226,9 @@ const Map = () => {
       });
 
       // Customize heatmap layer
+      console.log("radius", radius)
       heatmap.set('radius', radius)
       heatmap.set('opacity', 0.8);
-      console.log('HEATMAP!!!', heatmap)
       setHeatmap(heatmap)
     }
   }
@@ -302,7 +301,8 @@ const Map = () => {
           width: '100%',
           height: '94%'
         }}
-      ></div>
+      >
+      </div>
     </>
   );
 };

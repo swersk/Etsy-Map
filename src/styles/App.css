@@ -1,24 +1,24 @@
-#map {
-  width: 100%
-}
-
 .App {
   text-align: center;
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria, "Noto Serif Light", "Droid Serif", Georgia, serif;
+  height: 100vh;
 }
 
 .App-header {
   background-color: #fff;
   display: flex;
-  flex-direction: column;
+  color: #F56400;
+  font-weight: 700;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  border-bottom: 2px solid #F56400
+  justify-content: space-between;
+  font-size: calc(10px + 1vmin);
+  font-size: -webkit-calc(10px + 1vmin);
+  font-size: -moz-calc(10px + 1vmin);
+  border-bottom: 2px solid #F56400;
+  line-height: 0.3;
 }
 /*  background-color: #FDE0CC;;*/
-
 
 /*infowindow*/
 .gm-style-iw button {
@@ -60,5 +60,4 @@
 .infoImageAddress {
   margin-right: '20px';
 }
-
 

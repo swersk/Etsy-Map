@@ -5,8 +5,6 @@ import Tooltip from '@mui/material/Tooltip';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
-import CreateIcon from '@mui/icons-material/Create';
-import GetAppIcon from '@mui/icons-material/GetApp';
 import { useState } from 'react';
 
 const Dropdown = () => {
@@ -34,17 +32,13 @@ const Dropdown = () => {
   return (
     <>
       <Box sx={{
-        position: 'absolute',
-        top: 8,
-        right: 3,
-        justifyContent: 'right',
         cursor: 'pointer',
         '&hover': {
           background: '#555',
         }
         }}
         >
-        <Tooltip title="Shop Info">
+        <Tooltip title="Shop Info" placement="left" arrow>
           <IconButton
             onClick={handleClick}
             aria-controls={open ? 'options-menu' : undefined}
