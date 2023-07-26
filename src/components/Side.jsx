@@ -1,4 +1,5 @@
 import { Menu, MenuItem } from '@mui/material';
+import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
@@ -37,16 +38,16 @@ const Side = () => {
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
     },
     {
-      src: 'https://i.etsystatic.com/12475356/r/il/3a78ef/4282184100/il_75x75.4282184100_ib1w.jpg',
-      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
+      src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
+      title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
     {
       src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
       title: 'Bandages (3-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
     {
-      src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
-      title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
+      src: '/bandagesx2.avif',
+      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
     },
     {
       src: '	/italyListingPic.avif',
@@ -62,28 +63,26 @@ const Side = () => {
     },
   ];
 
-
   const getList = () => (
-    <div style={{ width: 250 }} onClick={() => setOpen(false)}>
+    <div style={{ width: 220 }}>
       {photos.map((photo, index) => (
         <ListItem button key={index}>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox />} />
+          </FormGroup>
           <ListItemAvatar>
             <Avatar src={photo.src} sx={{ border: '0.5px solid #D3D3D3', height: '50px', width: '50px' }} />
           </ListItemAvatar>
-          {photo.title.includes('Italian') && photo.title.includes('2-pack') ? (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={'Italian (2-pack)'} />
-          ) : photo.title.includes('Italian') && photo.title.includes('3-pack') ? (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={'Italian (3-pack)'} />
-          ) : photo.title.includes('Italian') ? (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={'Italian'} />
+          {photo.title.includes('Italian') ? (
+            <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian'} />
           ) : photo.title.includes('Camino') && photo.title.includes('2-pack') ? (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={'Camino (2-pack)'} />
+            <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (2-pack)'} />
           ) : photo.title.includes('Camino') && photo.title.includes('3-pack') ? (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={'Camino (3-pack)'} />
+            <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (3-pack)'} />
           ) : photo.title.includes('Camino') ? (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={'Camino'} />
+            <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino'} />
           ) : (
-            <ListItemText sx={{ marginLeft: '15px' }} primary={photo.title} />
+            <ListItemText sx={{ marginLeft: '9px' }} primary={photo.title} />
           )}
         </ListItem>
       ))}
