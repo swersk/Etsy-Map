@@ -13,7 +13,7 @@ import Divider from '@mui/material/Divider';
 import FilterListIcon from '@mui/icons-material/FilterList';
 
 
-const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, handleRadius, initialData }) => {
+const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData }) => {
 
 
   const [buttonRef, setButtonRef] = useState(null);
@@ -197,14 +197,6 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
                 <Typography>Off</Typography>
                 <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
                 <Typography>On</Typography>
-              </Stack>
-            </Stack>
-            <Stack direction="column" alignItems="center">
-              <FormLabel>HeatMap Radius</FormLabel>
-              <Stack direction="row" alignItems="center">
-                <Typography>Small</Typography>
-                <Switch onChange={handleRadius} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
-                <Typography>Large</Typography>
               </Stack>
             </Stack>
           </FormGroup>
