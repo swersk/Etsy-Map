@@ -67,7 +67,7 @@ const Map = () => {
       } else if (window.innerWidth <= 1024) {
         setInitialZoom(4.0);  // For iPads
       } else {
-        setInitialZoom(4.4); // For computers
+        setInitialZoom(4.6); // For computers
       }
     };
 
@@ -107,6 +107,14 @@ const Map = () => {
             scaledSize: new window.google.maps.Size(40, 40)
           };
         }
+
+        if (item.item.includes("Camino") && data.length < initialData.length) {
+          markerOptions.icon = {
+            url: "/caminoArrow.png",
+            scaledSize: new window.google.maps.Size(40, 40)
+          };
+        }
+
 
         const marker = new window.google.maps.Marker(markerOptions);
 
@@ -215,8 +223,8 @@ const Map = () => {
       });
 
       // Customize heatmap layer
-      heatmap.set('radius', 40)
-      heatmap.set('opacity', 0.7);
+      heatmap.set('radius', 55)
+      heatmap.set('opacity', 0.8);
       console.log('HEATMAP!!!', heatmap)
       setHeatmap(heatmap)
     }
