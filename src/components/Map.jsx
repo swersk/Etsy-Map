@@ -17,10 +17,11 @@ const Map = () => {
   const [showHeatMap, setShowHeatMap] = useState(true);
   const [heatmap, setHeatmap] = useState(null);
   const [markers, setShowMarkers] = useState(true);
-  const [radius, setRadius] = useState(true);
+  const [radius, setRadius] = useState(55);
   const [filteredData, setFilteredData] = useState([]);
   const [initialZoom, setInitialZoom] = useState(4.5);
   const [markersArr, setMarkersArr] = useState([]);
+  const [center, setCenter] = useState({ lat: 38.167243, lng: -98.5795 })
 
   const handleMarkers = () => {
     setShowMarkers(!markers)
@@ -64,10 +65,14 @@ const Map = () => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
         setInitialZoom(3.1); // Set a lower initial zoom level for mobile
+        setCenter({ lat: 28, lng: -96.5795 });
+        setRadius(30);
       } else if (window.innerWidth <= 1024) {
         setInitialZoom(4.0);  // For iPads
+        setCenter({ lat: 41.267243, lng: -95.771556 });
       } else {
         setInitialZoom(4.6); // For computers
+        setCenter({ lat: 38.167243, lng: -98.5795 });
       }
     };
 
@@ -108,13 +113,12 @@ const Map = () => {
           };
         }
 
-        if (item.item.includes("Camino") && data.length < initialData.length) {
-          markerOptions.icon = {
-            url: "/caminoArrow.png",
-            scaledSize: new window.google.maps.Size(40, 40)
-          };
-        }
-
+        // if (item.item.includes("Camino") && data.length < initialData.length) {
+        //   markerOptions.icon = {
+        //     url: "/caminoArrow.png",
+        //     scaledSize: new window.google.maps.Size(40, 40)
+        //   };
+        // }
 
         const marker = new window.google.maps.Marker(markerOptions);
 
@@ -223,7 +227,7 @@ const Map = () => {
       });
 
       // Customize heatmap layer
-      heatmap.set('radius', 55)
+      heatmap.set('radius', radius)
       heatmap.set('opacity', 0.8);
       console.log('HEATMAP!!!', heatmap)
       setHeatmap(heatmap)
@@ -244,7 +248,7 @@ const Map = () => {
     const initMap = () => {
       const mapOptions = {
         zoom: initialZoom,
-        center: window.innerWidth <= 1024 ? { lat: 41.267243, lng: -93.771556 } : { lat: 38.167243, lng: -98.5795 },
+        center: center,
         mapId: '2894c194fdae4e32',
         streetViewControl: true
       };
@@ -255,6 +259,7 @@ const Map = () => {
       if (markers && data) {
         addMarkers();
       }
+
 
       //add heatmap function
       addHeatmap()

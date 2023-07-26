@@ -17,8 +17,8 @@ const Dropdown = () => {
     window.open('https://www.etsy.com/uk/shop/BabelooDesigns?ref=seller-platform-mcnav')
   }
 
-  const handleDownload = () => {
-    window.open('https://www.etsy.com/uk/your/shops/BabelooDesigns/download')
+  const openGithub = () => {
+    window.open('https://github.com/swersk/etsymap')
   }
 
   const handleClick = (e) => {
@@ -51,7 +51,7 @@ const Dropdown = () => {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar sx={{ width: 42, height: 42 }} src="/shop2.png" alt="Lauren's avatar" />
+            <Avatar sx={{ width: 42, height: 42 }} src="/shop2.png" alt="Shop icon" />
           </IconButton>
         </Tooltip>
 
@@ -91,15 +91,15 @@ const Dropdown = () => {
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
           <MenuItem onClick={openShop}>
-            <Avatar src="https://i.etsystatic.com/isla/330fa4/56457224/isla_180x180.56457224_t77zstsm.jpg?version=0" />
+            <Avatar sx={{ width: 48, height: 48 }} src="https://i.etsystatic.com/isla/330fa4/56457224/isla_180x180.56457224_t77zstsm.jpg?version=0" />
             Visit the Shop
           </MenuItem>
           <Divider />
-          <MenuItem onClick={handleDownload}>
+          <MenuItem onClick={openGithub}>
             <ListItemIcon>
-              <GetAppIcon fontSize="small" />
+            <img src="github.png" alt="Download" style={{ width: '24px', height: '24px' }} />
             </ListItemIcon>
-            Sales Data
+            GitHub Repo
           </MenuItem>
         </Menu>
       </Box>

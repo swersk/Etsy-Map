@@ -1,10 +1,200 @@
+
+// import React, { useState, useEffect } from 'react';
+// import Button from '@mui/material/Button';
+// import Menu from '@mui/material/Menu';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormGroup from '@mui/material/FormGroup';
+// import Switch from '@mui/material/Switch';
+// import Typography from '@mui/material/Typography';
+// import Stack from '@mui/material/Stack';
+// import FormLabel from '@mui/material/FormLabel';
+// import Divider from '@mui/material/Divider';
+// import FilterListIcon from '@mui/icons-material/FilterList';
+// import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
+
+
+
+// const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData }) => {
+
+
+//   const [buttonRef, setButtonRef] = useState(null);
+//   const [itemSelected, setItemSelected] = useState('')
+//   const [anchorEl, setAnchorEl] = useState(null);
+//   const [showAllSelected, setShowAllSelected] = useState(true);
+
+//   useEffect(() => {
+//     const filterData = () => {
+//       if (data.length > 0) {
+//         const filteredData = initialData.filter(item => item.item === itemSelected);
+//         setData(filteredData)
+//       }
+//     };
+//     filterData();
+//   }, [itemSelected]);
+
+//   const handleShowAll = () => {
+//     setData(initialData);
+//     setShowHeatMap(true);
+//     setShowMarkers(true);
+//     setShowAllSelected(!showAllSelected)
+//   }
+
+//   const handleToggle = () => {
+//     setShowHeatMap(!showHeatMap);
+//   };
+
+//   // Retrieve product title from filter dropdown
+//   const handleSelection = (event) => {
+//     const title = event.currentTarget.querySelector('.product-title span').textContent;
+//     setItemSelected(title);
+//   };
+
+
+//   const handleFilterClick = (event) => {
+//     setAnchorEl(event.currentTarget);
+//   };
+
+//   const handleFilterClose = () => {
+//     setAnchorEl(null);
+//   };
+
+//   const photos = [
+//     {
+//       src: "/caminoColorful.avif",
+//       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
+//     },
+//     {
+//       src: 'https://i.etsystatic.com/12475356/r/il/3a78ef/4282184100/il_75x75.4282184100_ib1w.jpg',
+//       title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
+//     },
+//     {
+//       src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
+//       title: 'Bandages (3-pack), Camino de Santiago Plasters, 30 pcs per box'
+//     },
+//     {
+//       src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
+//       title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
+//     },
+//     {
+//       src: '	/italyListingPic.avif',
+//       title: 'Italian Bandages, Italy Plasters, 30 pcs'
+//     },
+//     {
+//       src: '/italyListingPicx2.avif',
+//       title: 'Italian Bandages (2-pack), Italy Plasters, 30 pcs each'
+//     },
+//     {
+//       src: 'italyListingPicx3.jpg',
+//       title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
+//     },
+//   ];
+
+//   return (
+//     <>
+//       <div
+//         id="floating-panel"
+//         style={{
+//           position: 'absolute',
+//           bottom: '33px',
+//           left: '9px',
+//           zIndex: 1,
+//           display: 'flex',
+//           flexDirection: 'column',
+//           justifyContent: 'flex-start',
+//           alignItems: 'center',
+//           fontFamily: 'Arial',
+//         }}
+//       >
+//         <div style={{ width: '100%' }}>
+//           <Accordion sx={{ boxShadow: 'none' }}>
+//             <AccordionSummary
+//               expandIcon={<FilterListIcon />}
+//               aria-controls="filter-panel-content"
+//               id="filter-panel-header"
+//               sx={{
+//                 background: '#f5f5f5',
+//                 borderBottom: '1px solid #ccc',
+//                 '&.Mui-expanded': {
+//                   minHeight: 'unset',
+//                 },
+//               }}
+//               onClick={handleFilterClick}
+//             >
+//               <Typography>Filter</Typography>
+//             </AccordionSummary>
+//             <AccordionDetails sx={{ flexDirection: 'column', padding: '5px' }}>
+//               {photos.map((photo, index) => (
+//                 <AccordionDetails key={index} sx={{ display: 'flex', alignItems: 'center' }}>
+//                   <img
+//                     src={photo.src}
+//                     alt={photo.title}
+//                     style={{ border: '0.5px solid #D3D3D3', height: '50px', width: '50px', marginRight: '10px'}}
+//                   />
+//                   <FormControlLabel
+//                     control={<Checkbox  />}
+//                     sx={{ ml: 'auto', mr: 0 }}
+//                   />
+//                 </AccordionDetails>
+//               ))}
+//             </AccordionDetails>
+//           </Accordion>
+//         </div>
+//         <div style={{ border: '1px solid #ccc', borderRadius: '2px', background: '#f5f5f5', padding: '5px', marginBottom: '7px' }}>
+//           <FormGroup>
+//             <Stack direction="column" alignItems="center">
+//               <FormLabel>Markers</FormLabel>
+//               <Stack direction="row" alignItems="center">
+//                 <Typography>Off</Typography>
+//                 <Switch onChange={handleMarkers} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+//                 <Typography>On</Typography>
+//               </Stack>
+//             </Stack>
+//             <Stack direction="column" alignItems="center">
+//               <FormLabel>Heatmap</FormLabel>
+//               <Stack direction="row" alignItems="center">
+//                 <Typography>Off</Typography>
+//                 <Switch onChange={handleToggle} defaultChecked inputProps={{ 'aria-label': 'toggle switch' }} />
+//                 <Typography>On</Typography>
+//               </Stack>
+//             </Stack>
+//           </FormGroup>
+//         </div>
+//         <Button
+//           id="showall-button"
+//           className="google-button"
+//           sx={{
+//             color: '#000000',
+//             fontSize: '17px',
+//             fontWeight: '400',
+//             background: '#f5f5f5',
+//             textTransform: 'none',
+//             width: '100%',
+//             cursor: 'pointer',
+//             fontFamily:
+//               'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+//             '&:hover': {
+//               background: '#ccc',
+//             },
+//           }}
+//           onClick={handleShowAll}
+//         >
+//           Show All
+//         </Button>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default FloatingPanel;
+
+
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
@@ -55,8 +245,6 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
   const handleFilterClose = () => {
     setAnchorEl(null);
   };
-
-
 
   const photos = [
     {
@@ -204,7 +392,7 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
         <div style={{ width: "100%" }}>
           <div style={{ marginBottom: '7px', background: '#f5f5f5' }}>
             <Button
-             ref={setButtonRef}
+              ref={setButtonRef}
               id="filter-button"
               className="google-button"
               sx={{
@@ -223,9 +411,8 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
               }}
               onClick={handleFilterClick}
             >
-                  <FilterListIcon sx={{marginRight: '6px'}}/>
-                  <span >Filter</span>
-
+              <FilterListIcon sx={{ marginRight: '6px' }} />
+              {itemSelected ? itemSelected : 'Filter'}
             </Button>
             <Divider orientation="horizontal" sx={{
               width: '100%',
@@ -256,7 +443,6 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
           </div>
         </div>
       </div>
-
     </>
   );
 };
