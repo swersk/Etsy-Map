@@ -65,7 +65,7 @@ const Map = () => {
       if (window.innerWidth <= 768) {
         setInitialZoom(3.1); // Set a lower initial zoom level for mobile
         setCenter({ lat: 28, lng: -96.5795 });
-        setRadius(30);
+        setRadius(20);
       } else if (window.innerWidth <= 1024) {
         setInitialZoom(4.0);  // For iPads
         setCenter({ lat: 41.267243, lng: -95.771556 });
