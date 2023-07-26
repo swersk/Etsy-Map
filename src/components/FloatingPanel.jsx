@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import FormLabel from '@mui/material/FormLabel';
-import Divider from '@mui/material/Divider';
 import { styled } from '@mui/material/styles';
-import FilterListIcon from '@mui/icons-material/FilterList';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 
 const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData }) => {
-  const [buttonRef, setButtonRef] = useState(null);
   const [itemSelected, setItemSelected] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
   const [showAllSelected, setShowAllSelected] = useState(true);
-  const [showDrawer, setShowDrawer] = useState(false);
 
   useEffect(() => {
     const filterData = () => {
@@ -107,7 +101,6 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
               },
             }}
           >
-            {/* Menu content here */}
           </Menu>
         </div>
         <div

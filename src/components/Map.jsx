@@ -226,7 +226,6 @@ const Map = () => {
       });
 
       // Customize heatmap layer
-      console.log("radius", radius)
       heatmap.set('radius', radius)
       heatmap.set('opacity', 0.8);
       setHeatmap(heatmap)

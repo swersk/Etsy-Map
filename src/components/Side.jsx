@@ -41,6 +41,9 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
     setShowAllSelected(!showAllSelected)
   }
 
+  //pass the functio nas a prop
+
+
   const handleSelection = (e) => {
     let title = e.currentTarget.querySelector('.product-title span').textContent
     setItemSelected(title)
@@ -146,9 +149,6 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
       </Button>
     </div>
   );
-
-
-
 
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
