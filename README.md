@@ -1,6 +1,6 @@
 ## EtsyMap
 
-EtsyMap is a web application that visualizes sales data from an Etsy store on a map. It uses Google Maps API to display markers for each sale location and provides additional features like a heatmap. 
+EtsyMap is an interactive web application that visualizes sales data from an Etsy store on a map. It uses Google Maps API to display markers for each sale location and provides additional features like a heatmap. 
 
 
 
