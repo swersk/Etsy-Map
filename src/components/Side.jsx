@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import { Checkbox, FormControlLabel, Typography } from '@mui/material';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -14,21 +14,22 @@ import { styled, useTheme } from '@mui/material/styles';
 const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData }) => {
 
   const [open, setOpen] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
-  const [itemSelected, setItemSelected] = useState('');
-  const [showAllSelected, setShowAllSelected] = useState(true);
+  const [selectAllChecked, setSelectAllChecked] = useState(true);
+  const [checkedItems, setCheckedItems] = useState({});
+
 
   useEffect(() => {
-    // const filterData = () => {
-    //   if (data.length > 0) {
-    //     const filteredData = initialData.filter(item => item.item === itemSelected);
-    //     setData(filteredData)
-    //   }
-    // };
-    // filterData();
-    console.log('test')
-  }, [itemSelected]);
+    const filterData = () => {
+      if (Object.keys(checkedItems).length > 0) {
+        const filteredData = initialData.filter(item => checkedItems[item.item]);
+        setData(filteredData);
+      } else {
+        setData(initialData);
+      }
+    };
+    filterData();
+  }, [checkedItems]);
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -38,38 +39,28 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
     setData(initialData);
     setShowHeatMap(true);
     setShowMarkers(true);
-    setShowAllSelected(!showAllSelected)
+    setCheckedItems({});
+    setSelectAllChecked(true);
   }
 
-  //pass the functio nas a prop
+  //TODO: make sure drawer doesn't cover infowindow / recenter map
+  //TODO: avoid rerender on every click
+  //TODO: add sticker filter functionality below
 
-
-  const handleSelection = (e) => {
-    let title = e.currentTarget.querySelector('.product-title span').textContent
-    setItemSelected(title)
-  }
-
-  const handleFilterClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleSelection = (photoTitle) => {
+    // Toggle the checked status of the photo item
+    setCheckedItems((prevCheckedItems) => ({
+      ...prevCheckedItems,
+      [photoTitle]: !prevCheckedItems[photoTitle],
+    }));
+    // Check if any checkbox is unchecked to set "Show All" to false
+    setSelectAllChecked(Object.values(checkedItems).every((isChecked) => isChecked));
   };
-
-  const handleFilterClose = () => {
-    setAnchorEl(null);
-  };
-
 
   const photos = [
     {
       src: "/caminoColorful.avif",
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
-    },
-    {
-      src: '	https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
-      title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
-    },
-    {
-      src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
-      title: 'Bandages (3-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
     {
       src: '/bandagesx2.avif',
@@ -79,14 +70,10 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
       src: '	/italyListingPic.avif',
       title: 'Italian Bandages, Italy Plasters, 30 pcs'
     },
-    {
-      src: '/italyListingPicx2.avif',
-      title: 'Italian Bandages (2-pack), Italy Plasters, 30 pcs each'
-    },
-    {
-      src: 'italyListingPicx3.jpg',
-      title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
-    },
+    // {
+    //   src: '/4stickers.avif',
+    //   title: 'Stickers'
+    // },
   ];
 
   const getList = () => (
@@ -94,7 +81,7 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
       {photos.map((photo, index) => (
         <ListItem button key={index}>
           <FormControlLabel
-            control={<Checkbox />}
+            control={<Checkbox onClick={() => handleSelection(photo.title)} checked={!!checkedItems[photo.title]} />}
             label={
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <ListItemAvatar>
@@ -103,18 +90,12 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
                     sx={{ border: '0.5px solid #D3D3D3', height: '50px', width: '50px' }}
                   />
                 </ListItemAvatar>
-                {photo.title.includes('Italian') && photo.title.includes('2-pack') ? (
-                  <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian (2-pack)'} />
-                ) : photo.title.includes('Italian') && photo.title.includes('3-pack') ? (
-                  <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian (3-pack)'} />
-                ) : photo.title.includes('Italian') ? (
+                {photo.title.includes('Italian') ? (
                   <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian'} />
                 ) : photo.title.includes('Camino') && photo.title.includes('2') ? (
-                  <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (2-pack)'} />
-                ) : photo.title.includes('Camino') && photo.title.includes('3-pack') ? (
-                  <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (3-pack)'} />
+                  <ListItemText sx={{ marginLeft: '9px' }} primary={`Camino`} secondary={<Typography variant="caption" component="span" color="textSecondary">(Blue/Yellow)</Typography>} />
                 ) : photo.title.includes('Camino') ? (
-                  <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino'} />
+                  <ListItemText sx={{ marginLeft: '9px' }} primary={`Camino`} secondary={<Typography variant="caption" component="span" color="textSecondary">(Colorful)</Typography>} />
                 ) : (
                   <ListItemText sx={{ marginLeft: '9px' }} primary={photo.title} />
                 )}
@@ -161,13 +142,14 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
 
   return (
     <>
-      <Tooltip title="Filter by product" placement="right" arrow style={{marginLeft: 4}}>
+      <Tooltip title="Filter by product" placement="right" arrow style={{ marginLeft: 4 }}>
         <Button
           id="filter=button"
           sx={{
             color: 'black',
             textTransform: 'none',
             fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
+            // fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
             fontSize: '19px',
             fontWeight: '400',
           }} onClick={() => setOpen(true)}>
@@ -189,10 +171,10 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
         </DrawerHeader>
         <Divider />
         {getList()}
-
       </Drawer>
     </>
   );
 };
 
 export default Side;
+

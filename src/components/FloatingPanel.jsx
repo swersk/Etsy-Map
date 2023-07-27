@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import Menu from '@mui/material/Menu';
+import React from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
@@ -7,45 +6,9 @@ import Stack from '@mui/material/Stack';
 import FormLabel from '@mui/material/FormLabel';
 import { styled } from '@mui/material/styles';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Divider from '@mui/material/Divider';
 
 const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData }) => {
-  const [itemSelected, setItemSelected] = useState('');
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [showAllSelected, setShowAllSelected] = useState(true);
-
-  useEffect(() => {
-    const filterData = () => {
-      if (data.length > 0) {
-        const filteredData = initialData.filter(item => item.item === itemSelected);
-        setData(filteredData);
-      }
-    };
-    filterData();
-  }, [itemSelected]);
-
-  const handleShowAll = () => {
-    setData(initialData);
-    setShowHeatMap(true);
-    setShowMarkers(true);
-    setShowAllSelected(!showAllSelected);
-  };
-
-  const handleToggle = () => {
-    setShowHeatMap(!showHeatMap);
-  };
-
-  const handleSelection = (e) => {
-    let title = e.currentTarget.querySelector('.product-title span').textContent;
-    setItemSelected(title);
-  };
-
-  const handleFilterClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleFilterClose = () => {
-    setAnchorEl(null);
-  };
 
   const LightTooltip = styled(({ className, ...props }) => (
     <Tooltip {...props} classes={{ popper: className }} />
@@ -58,6 +21,12 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
     },
   }));
 
+  const handleToggle = () => {
+    setShowHeatMap(!showHeatMap);
+  };
+
+
+  //TODO: make the onclick effective when clicking on the words on/off too
   return (
     <>
       <div
@@ -74,42 +43,13 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
           fontFamily: 'Arial',
         }}
       >
-        <div style={{ width: '100%' }}>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleFilterClose}
-            //to not hide the button when expanded
-            anchorOrigin={{
-              vertical: 'bottom', //menu positioned below the button
-              horizontal: 'right', //menu positioned to the right of the button
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-            getContentAnchorEl={null} // Disable the default anchor handling
-            //other styling
-            PaperProps={{
-              style: {
-                boxShadow: 'none',
-              },
-            }}
-            MenuListProps={{
-              style: {
-                padding: 0,
-              },
-            }}
-          >
-          </Menu>
-        </div>
         <div
           style={{
             border: '1px solid #ccc',
             borderRadius: '2px',
             background: '#f5f5f5',
             padding: '5px',
-            marginBottom: '7px',
+            marginBottom: '3px',
           }}
         >
           <FormGroup>
@@ -123,6 +63,7 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
                 <Typography>On</Typography>
               </Stack>
             </Stack>
+            <Divider />
             <Stack direction="column" alignItems="center">
               <LightTooltip title="Turn heatmap on/off" placement="right-start" arrow>
                 <FormLabel sx={{ '&:hover': { color: '#000000' } }}>Heatmap</FormLabel>

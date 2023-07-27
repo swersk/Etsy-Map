@@ -35,7 +35,8 @@ const Dropdown = () => {
         cursor: 'pointer',
         '&hover': {
           background: '#555',
-        }
+        },
+        pl: 3,
         }}
         >
         <Tooltip title="Shop Info" placement="left" arrow>

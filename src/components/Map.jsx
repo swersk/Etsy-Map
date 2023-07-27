@@ -6,22 +6,18 @@ import FloatingPanel from './FloatingPanel';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
 
 
-const Map = () => {
-  const [data, setData] = useState([]);
-  const [initialData, setInitialData] = useState([])
-  const [selectedMarker, setSelectedMarker] = useState(null);
-  const [markerOpen, setMarkerOpen] = useState(false);
+const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarkers, initialData, setInitialData }) => {
+
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const infoWindowsRef = useRef({});
-  const [showHeatMap, setShowHeatMap] = useState(true);
   const [heatmap, setHeatmap] = useState(true);
-  const [markers, setShowMarkers] = useState(true);
   const [radius, setRadius] = useState(20);
   const [filteredData, setFilteredData] = useState([]);
   const [initialZoom, setInitialZoom] = useState(4.5);
   const [markersArr, setMarkersArr] = useState([]);
   const [center, setCenter] = useState({ lat: 38.167243, lng: -98.5795 })
+  const [selectedMarker, setSelectedMarker] = useState(null);
 
   const handleMarkers = () => {
     setShowMarkers(!markers)
@@ -113,12 +109,12 @@ const Map = () => {
           };
         }
 
-        // if (item.item.includes("Camino") && data.length < initialData.length) {
-        //   markerOptions.icon = {
-        //     url: "/caminoArrow.png",
-        //     scaledSize: new window.google.maps.Size(40, 40)
-        //   };
-        // }
+        if (item.item.includes("Camino") && data.length < initialData.length) {
+          markerOptions.icon = {
+            url: "/caminoArrow.png",
+            scaledSize: new window.google.maps.Size(40, 40)
+          };
+        }
 
         const marker = new window.google.maps.Marker(markerOptions);
 
@@ -192,7 +188,6 @@ const Map = () => {
         marker.addListener('click', () => {
 
           setSelectedMarker(item);
-          setMarkerOpen(true);
 
           // Close any previously opened info windows
           Object.values(infoWindowsRef.current).forEach(infoWindow => {
@@ -257,7 +252,6 @@ const Map = () => {
       if (markers && data) {
         addMarkers();
       }
-
 
       //add heatmap function
       addHeatmap()
