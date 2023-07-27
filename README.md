@@ -28,10 +28,9 @@ Demo hurrrr>
 
 ## Features for V1.0.0
 
-• Display sales data as markers on a Google Map <br />
-• View sales data as a heatmap <br />
+• Display sales data as markers and a heatmap on a Google Map <br /> 
 • Toggle markers and heatmap on/off<br />
-• Clickable markers with information about each sale<br />
+• Find more information for each order by clicking on the marker<br />
 • Filter sales data by product<br />
 • Responsive and user-friendly interface<br />
 
