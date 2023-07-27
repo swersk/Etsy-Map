@@ -19,15 +19,8 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
   const [center, setCenter] = useState({ lat: 38.167243, lng: -98.5795 })
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  const handleMarkers = () => {
-    setShowMarkers(!markers)
-  }
 
-  const formatName = (string) => {
-    return string.split(' ')[0]
-  }
-
-  //parse CSV data
+  // Parse CSV data
   useEffect(() => {
     fetch('/Etsy2023G.csv')
       .then(response => response.blob())
@@ -41,7 +34,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
               item: item['Item Name'],
               buyer: item.buyer,
               date: item['Date Paid'],
-              name: formatName(item['Ship Name']),
+              name: item['Ship Name'].split(' ')[0],
               quantity: item.Quantity,
               address1: item['Ship Address1'],
               city: item['Ship City'],
@@ -56,10 +49,12 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
       });
   }, []);
 
+
+  // Set initial zoom and center based on device type
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
-        setInitialZoom(3.1); // Set a lower initial zoom level for mobile
+        setInitialZoom(3.1); // For mobile
         setCenter({ lat: 28, lng: -96.5795 });
         setRadius(20);
       } else if (window.innerWidth <= 1024) {
@@ -72,7 +67,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
       }
     };
 
-    // Call the handleResize function initially and whenever the window is resized
+    // Call the handleResize function initially and when window is resized
     handleResize();
     window.addEventListener('resize', handleResize);
 
@@ -80,17 +75,8 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useEffect(() => {
-    // Create marker instances
-    if (markers && data) {
-      addMarkers()
-    } else {
-      markersArr.map((marker) => {
-        marker.setMap(null);
-      })
-    }
-  }, [markers])
 
+  // Add markers
   const addMarkers = () => {
     if (markers && data) {
       const markers = data.map(item => {
@@ -102,6 +88,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           map: mapInstanceRef.current
         };
 
+        // Custom markers
         if (item.item.includes("Italian") && data.length < initialData.length) {
           markerOptions.icon = {
             url: "/italy.png",
@@ -159,25 +146,25 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
             </div>
           `   : ''
           }
-                <div id="info-content">
-                  <div>
-                  <img src="/person.png"
-                  class="infoImageName"> ${item.name}
-                  </div>
-                  <div>
-                  <img src="/location2.png"  class="infoImageAddress" style="margin-right: 13px;">${item.city}, ${item.state}
-                  </div>
-                  <div>
-                  <img src="/item2.png" class="infoImageItem"> ${item.item}
-                  </div>
-                  <div>
-                  <img src="/info.png" class="infoImageQuantity"> ${item.quantity} item${item.quantity > 1 ? 's' : ''}
-                </div>
-                  <div>
-                  <img src="/date.png" class="infoImageDate"> ${item.date}
-                  </div>
-                </div>
+            <div id="info-content">
+              <div>
+              <img src="/person.png"
+              class="infoImageName"> ${item.name}
               </div>
+              <div>
+              <img src="/location2.png"  class="infoImageAddress" style="margin-right: 13px;">${item.city}, ${item.state}
+              </div>
+              <div>
+              <img src="/item2.png" class="infoImageItem"> ${item.item}
+              </div>
+              <div>
+              <img src="/info.png" class="infoImageQuantity"> ${item.quantity} item${item.quantity > 1 ? 's' : ''}
+            </div>
+              <div>
+              <img src="/date.png" class="infoImageDate"> ${item.date}
+              </div>
+            </div>
+          </div>
             `;
 
         const infoWindow = new window.google.maps.InfoWindow({
@@ -205,6 +192,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     }
   }
 
+  // Add heatmap
   const addHeatmap = () => {
     if (!window.google || !window.google.maps) {
       return
@@ -227,6 +215,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     }
   }
 
+  // Show/hide heatmap
   useEffect(() => {
     if (showHeatMap) {
       addHeatmap()
@@ -235,7 +224,25 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     }
   }, [showHeatMap])
 
+   // Show/hide markers
+  const handleMarkers = () => {
+    setShowMarkers(!markers)
+  }
 
+  // Show/hide markers
+  useEffect(() => {
+    // Create marker instances
+    if (markers && data) {
+      addMarkers()
+    } else {
+      markersArr.map((marker) => {
+        marker.setMap(null);
+      })
+    }
+  }, [markers])
+
+
+  // Connect to API and load map with markers and heatmap
   useEffect(() => {
     // Create new map instance
     const initMap = () => {
@@ -248,17 +255,18 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
 
       mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
 
-      //add markers
+      // Add markers
       if (markers && data) {
         addMarkers();
       }
 
-      //add heatmap function
-      addHeatmap()
-    };
+      // Add heatmap function
+        addHeatmap()
+     };
 
     // Check if Google API is loaded
     if (!window.google || !window.google.maps) {
+      console.log('testttttt!!!!')
       // if not, load it dynamically
       const googleMapsScript = document.createElement('script');
       googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&callback=initMap`;
@@ -282,7 +290,6 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
       // Google Maps API already loaded, so directly call initMap
       initMap();
     }
-
   }, [data]);
 
 
