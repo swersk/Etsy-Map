@@ -1,6 +1,7 @@
 ## EtsyMap 
 
-EtsyMap is an custom map to visualize Etsy sales data. It's sprinkled it with interactive features to make data exploration more delightful!  
+
+Welcome! EtsyMap is an custom map to visualize Etsy sales data. It's sprinkled it with interactive features to make data exploration more delightful!  
 
 
 
@@ -32,7 +33,7 @@ Demo hurrrr>
 
 
 
-## Features for V1.0.0
+## Features 
 
 • Display sales data as markers and a heatmap on a Google Map <br /> 
 • Toggle markers and heatmap on/off<br />
