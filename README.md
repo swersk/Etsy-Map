@@ -18,8 +18,7 @@ Welcome! EtsyMap is an custom map to visualize Etsy sales data. It's sprinkled i
 1. [Demo](#demo)<br>
 2. [Features](#features) <br>
 3. [v2](#v2) <br>
-4. [License](#license) <br> 
-5. [Contact](#contact)<br>
+4. [Contact](#contact)<br>
 
 
 
@@ -41,7 +40,7 @@ Demo hurrrr>
 • Filter sales data by product<br />
 • Responsive and user-friendly interface  
 
-
+This project is licensed under the MIT License.
 
 
 
@@ -51,17 +50,6 @@ The next version will include the following features:<br />
 • View sales trends (MoM and YoY)<br />
 • Buyer reviews included in Infowindows<br />
 • AI-generated fun facts about sales data<br />  
-
-
-
-
-
-## License
-
-This project is licensed under the MIT License.  
-
-
-
 
 
 ## Contact
