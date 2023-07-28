@@ -14,11 +14,11 @@ EtsyMap is an custom map to visualize Etsy sales data. It's sprinkled it with in
 
 ## Table of Contents
 
-1. [Demo](#demo)<br />
-2. [Features](#features) <br />
-3. [v2](#v2) <br />
-4. [License](#license) <br /> 
-5. [Contact](#contact)
+1. [Demo](#demo)<br>
+2. [Features](#features) <br>
+3. [v2](#v2) <br>
+4. [License](#license) <br> 
+5. [Contact](#contact)<br>
 
 
 
