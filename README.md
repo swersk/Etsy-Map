@@ -44,7 +44,7 @@ This project is licensed under the MIT License.
 
 
 
-## Upcomiong Features 
+## Upcoming Features 
 
 The next version will include the following features:<br />
 • View sales trends (MoM and YoY)<br />
