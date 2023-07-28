@@ -24,30 +24,17 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
   useEffect(() => {
     const filterData = () => {
       if (Object.keys(checkedItems).length > 0) {
-        const filteredData = initialData.filter(item => checkedItems[item.item]);
+        const filteredData = initialData.filter(item =>
+          checkedItems[item.item]);
         setData(filteredData);
       } else {
         setData(initialData);
       }
     };
+    console.log('data.length:', data)
     filterData();
   }, [checkedItems]);
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  }
-
-  const handleShowAll = () => {
-    setData(initialData);
-    setShowHeatMap(true);
-    setShowMarkers(true);
-    setCheckedItems({});
-    setSelectAllChecked(true);
-
-    if (isMobile) {
-      setOpen(false);
-    }
-  }
 
   const handleSelection = (photoTitle) => {
     // Toggle the checked status of the photo item
@@ -64,6 +51,23 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
     }
   };
 
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  const handleShowAll = () => {
+    setData(initialData);
+    setShowHeatMap(true);
+    setShowMarkers(true);
+    setCheckedItems({});
+    setSelectAllChecked(true);
+
+    if (isMobile) {
+      setOpen(false);
+    }
+  };
+
   const DrawerHeader = styled('div')(({ theme }) => ({
     display: 'flex',
     padding: theme.spacing(0, 1),
@@ -71,24 +75,38 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
     justifyContent: 'flex-end',
   }));
 
-
   const photos = [
     {
       src: "/caminoColorful.avif",
       title: 'Camino de Santiago Bandages, Plasters, 30 pcs',
     },
     {
-      src: '/bandagesx2.avif',
-      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
+      src: 'https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg',
+      title: 'Bandages (2-pack), Camino de Santiago Plasters, 30 pcs per box'
     },
     {
+      src: 'https://i.etsystatic.com/12475356/c/2000/2000/0/0/il/63d30f/4416907678/il_75x75.4416907678_3bma.jpg',
+      title: 'Bandages (3-pack), Camino de Santiago Plasters, 30 pcs per box'
+    },
+    {
+      src: '/bandagesx2.avif',
+      title: 'Bandages, Plasters (2 pack) - Camino de Santiago'
+    }, {
       src: '	/italyListingPic.avif',
       title: 'Italian Bandages, Italy Plasters, 30 pcs'
     },
-    // {
-    //   src: '/4stickers.avif',
-    //   title: 'Stickers'
-    // },
+    {
+      src: '/italyListingPicx2.avif',
+      title: 'Italian Bandages (2-pack), Italy Plasters, 30 pcs each'
+    },
+    {
+      src: 'italyListingPicx3.jpg',
+      title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
+    },
+    {
+      src: '/4stickers.avif',
+      title: 'Stickers'
+    },
   ];
 
   return (
@@ -134,14 +152,22 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
                         sx={{ border: '0.5px solid #D3D3D3', height: '50px', width: '50px' }}
                       />
                     </ListItemAvatar>
-                    {photo.title.includes('Italian') ? (
+                    {photo.title.includes('Italian') && photo.title.includes('2-pack') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian (x2)'} />
+                    ) : photo.title.includes('Italian') && photo.title.includes('3-pack') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian (x3)'} />
+                    ) : photo.src === 'https://i.etsystatic.com/12475356/r/il/72703d/4344046976/il_75x75.4344046976_az6t.jpg' ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (2x)'} />
+                    ) : photo.title.includes('Bandages (3-pack)') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (x3)'} />
+                    ) : photo.title.includes('Camino') && !photo.title.includes('-') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino'} secondary={<Typography variant="caption" component="span" color="textSecondary">(Colorful)</Typography>} />
+                    ) : photo.title.includes('Camino') &&  photo.title.includes('Plasters') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (x2)'} />
+                    ) : photo.title.includes('Stickers') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Stickers'} />
+                    ) :  (
                       <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian'} />
-                    ) : photo.title.includes('Camino') && photo.title.includes('2') ? (
-                      <ListItemText sx={{ marginLeft: '9px' }} primary={`Camino`} secondary={<Typography variant="caption" component="span" color="textSecondary">(Blue/Yellow)</Typography>} />
-                    ) : photo.title.includes('Camino') ? (
-                      <ListItemText sx={{ marginLeft: '9px' }} primary={`Camino`} secondary={<Typography variant="caption" component="span" color="textSecondary">(Colorful)</Typography>} />
-                    ) : (
-                      <ListItemText sx={{ marginLeft: '9px' }} primary={photo.title} />
                     )}
                   </Box>
                 }
@@ -179,4 +205,3 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
 };
 
 export default Side;
-

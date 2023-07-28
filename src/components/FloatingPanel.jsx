@@ -25,7 +25,6 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
     setShowHeatMap(!showHeatMap);
   };
 
-
   //TODO: make the onclick effective when clicking on the words on/off too
   return (
     <>

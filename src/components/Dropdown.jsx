@@ -12,7 +12,7 @@ const Dropdown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const openShop = () => {
-    window.open('https://www.etsy.com/uk/shop/BabelooDesigns?ref=seller-platform-mcnav')
+    window.open('https://www.etsy.com/shop/BabelooDesigns')
   }
 
   const openGithub = () => {

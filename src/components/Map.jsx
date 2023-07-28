@@ -96,6 +96,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           };
         }
 
+        // Custom markers
         if (item.item.includes("Camino") && data.length < initialData.length) {
           markerOptions.icon = {
             url: "/caminoArrow.png",
@@ -103,12 +104,22 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           };
         }
 
-        if (item.item.includes("2") && data.length < initialData.length) {
+        // Custom markers
+        if (item.item.includes("Bandages, Plasters (2 pack) - Camino de Santiago") && data.length < initialData.length) {
           markerOptions.icon = {
             url: "/bluearrow.png",
             scaledSize: new window.google.maps.Size(40, 40)
           };
         }
+
+        // Custom markers
+        if (item.item.includes("Stickers") && data.length < initialData.length) {
+          markerOptions.icon = {
+            url: "/shell.png",
+            scaledSize: new window.google.maps.Size(40, 40)
+          };
+        }
+
 
         const marker = new window.google.maps.Marker(markerOptions);
 
@@ -315,6 +326,8 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
 };
 
 export default Map;
+
+
 
 
 
