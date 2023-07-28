@@ -103,6 +103,13 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           };
         }
 
+        if (item.item.includes("2") && data.length < initialData.length) {
+          markerOptions.icon = {
+            url: "/bluearrow.png",
+            scaledSize: new window.google.maps.Size(40, 40)
+          };
+        }
+
         const marker = new window.google.maps.Marker(markerOptions);
 
         // Create infowindow instances
