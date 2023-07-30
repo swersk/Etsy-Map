@@ -10,11 +10,10 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { styled, useTheme } from '@mui/material/styles';
 
-// TODO: make sure drawer doesn't cover infowindow / recenter map
-// TODO: avoid rerender on every click
-// TODO: add sticker filter functionality below
+// TODO: Make sure drawer doesn't cover infowindow / recenter map
+// TODO: Avoid rerender on every click
 
-const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData }) => {
+const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, handleMarkers, initialData, setMapIsLoaded, mapIsLoaded }) => {
 
   const [open, setOpen] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(true);
@@ -36,8 +35,9 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
   }, [checkedItems]);
 
 
-  const handleSelection = (photoTitle) => {
+  const handleSelection = (e, photoTitle) => {
     // Toggle the checked status of the photo item
+    e.preventDefault()
     setCheckedItems((prevCheckedItems) => ({
       ...prevCheckedItems,
       [photoTitle]: !prevCheckedItems[photoTitle],
@@ -103,26 +103,30 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
       src: 'italyListingPicx3.jpg',
       title: 'Italian Bandages (3-pack), Italy Plasters, 30 pcs each'
     },
-    {
-      src: '/4stickers.avif',
-      title: 'Stickers'
-    },
   ];
 
   return (
     <>
       <Tooltip title="Filter by product" placement="right" arrow style={{ marginLeft: 4 }}>
         <Button
-          id="filter=button"
+          id="filter-button"
           sx={{
             color: 'black',
             textTransform: 'none',
-            fontFamily: 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
-            // fontFamily: "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
+            fontFamily:
+              'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',
             fontSize: '19px',
             fontWeight: '400',
-          }} onClick={() => setOpen(true)}>
-          <FilterListIcon sx={{ marginRight: '6px' }} />
+          }}
+          onClick={() => setOpen(true)}
+        >
+          <FilterListIcon
+            sx={{
+              marginRight: '6px',
+              fontFamily:
+                "Guardian-EgypTT, Charter, 'Charter Bitstream', Cambria, 'Noto Serif Light', 'Droid Serif', Georgia, serif",
+            }}
+          />
           Filter
         </Button>
       </Tooltip>
@@ -135,7 +139,7 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon sx={{ border: '1px solid gray', borderRadius: '50%' }} />
+            <ChevronLeftIcon sx={{ color: 'black', border: '1px solid black', borderRadius: '50%' }} />
           </IconButton>
         </DrawerHeader>
         <Divider />
@@ -143,7 +147,7 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
           {photos.map((photo, index) => (
             <ListItem button key={index}>
               <FormControlLabel
-                control={<Checkbox onClick={() => handleSelection(photo.title)} checked={!!checkedItems[photo.title]} />}
+                control={<Checkbox onClick={(e) => handleSelection(e, photo.title)} checked={!!checkedItems[photo.title]} />}
                 label={
                   <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <ListItemAvatar>
@@ -161,12 +165,12 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
                     ) : photo.title.includes('Bandages (3-pack)') ? (
                       <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (x3)'} />
                     ) : photo.title.includes('Camino') && !photo.title.includes('-') ? (
-                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino'} secondary={<Typography variant="caption" component="span" color="textSecondary">(Colorful)</Typography>} />
-                    ) : photo.title.includes('Camino') &&  photo.title.includes('Plasters') ? (
+                      <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino'} secondary={<Typography variant="caption" component="span" color="black">(Colorful)</Typography>} />
+                    ) : photo.title.includes('Camino') && photo.title.includes('Plasters') ? (
                       <ListItemText sx={{ marginLeft: '9px' }} primary={'Camino (x2)'} />
                     ) : photo.title.includes('Stickers') ? (
                       <ListItemText sx={{ marginLeft: '9px' }} primary={'Stickers'} />
-                    ) :  (
+                    ) : (
                       <ListItemText sx={{ marginLeft: '9px' }} primary={'Italian'} />
                     )}
                   </Box>
@@ -188,6 +192,7 @@ const Side = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setData, hand
               background: '#f5f5f5',
               textTransform: 'none',
               width: '80%',
+              border: '1px solid black',
               cursor: 'pointer',
               fontFamily:
                 'apple-system, BlinkMacSystemFont, "Roboto", "Droid Sans", "Segoe UI", "Helvetica", Arial, sans-serif',

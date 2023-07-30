@@ -89,13 +89,13 @@ const Dropdown = () => {
             <Avatar sx={{ width: 48, height: 48 }} src="https://i.etsystatic.com/isla/330fa4/56457224/isla_180x180.56457224_t77zstsm.jpg?version=0" />
             Visit the Shop
           </MenuItem>
-          <Divider />
-          <MenuItem onClick={openGithub}>
+          {/* <Divider /> */}
+          {/* <MenuItem onClick={openGithub}>
             <ListItemIcon>
             <img src="github.png" alt="Download" style={{ width: '24px', height: '24px' }} />
             </ListItemIcon>
             GitHub Repo
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </Box>
     </>

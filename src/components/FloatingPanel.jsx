@@ -46,7 +46,8 @@ const FloatingPanel = ({ setShowMarkers, setShowHeatMap, showHeatMap, data, setD
           style={{
             border: '1px solid #ccc',
             borderRadius: '2px',
-            background: '#f5f5f5',
+            backgroundColor: '#FFFFFF',
+            // background: '#f5f5f5',
             padding: '5px',
             marginBottom: '3px',
           }}

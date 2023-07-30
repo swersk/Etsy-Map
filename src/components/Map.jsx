@@ -4,6 +4,7 @@ import Papa from 'papaparse';
 import '../styles/App.css';
 import FloatingPanel from './FloatingPanel';
 import 'cesium/Build/Cesium/Widgets/widgets.css';
+import Confetti from 'react-confetti';
 
 
 const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarkers, initialData, setInitialData }) => {
@@ -14,10 +15,23 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
   const [heatmap, setHeatmap] = useState(true);
   const [radius, setRadius] = useState(20);
   const [filteredData, setFilteredData] = useState([]);
-  const [initialZoom, setInitialZoom] = useState(4.5);
   const [markersArr, setMarkersArr] = useState([]);
   const [center, setCenter] = useState({ lat: 38.167243, lng: -98.5795 })
   const [selectedMarker, setSelectedMarker] = useState(null);
+  const [initialZoom, setInitialZoom] = useState(4.5);
+  const [mapInitialized, setMapInitialized] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+
+
+  // STRUCTURE
+  // PARSE DATA  - useEffect
+  // CONNECT TO GOOGLE API - useEffect
+  // SET INITIAL ZOOM - useEffect
+  // ADD HEATMAP()
+  // HANDLEMARKERS()
+  // MARKERS - useEffect (to show/hide markers)
+  // ADD MARKERS()
+  // SHOW CONFETTI
 
 
   // Parse CSV data
@@ -46,11 +60,64 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
             setInitialData(addressData);
           }
         });
+
       });
+      console.log('DATA!!!!', initialData)
   }, []);
 
 
-  // Set initial zoom and center based on device type
+  // Connect to API and load map
+  useEffect(() => {
+
+    // Create map instance
+    const initMap = () => {
+      const mapOptions = {
+        zoom: initialZoom,
+        center: center,
+        mapId: '2894c194fdae4e32',
+        streetViewControl: true
+      };
+
+      mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
+
+      // // Add markers
+      if (markers && data) {
+        addMarkers();
+      }
+      // Add heatmap function
+      addHeatmap()
+    };
+
+    // Check if Google API is loaded
+    if (!window.google || !window.google.maps) {
+      // if not, load it dynamically
+      const googleMapsScript = document.createElement('script');
+      googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&callback=initMap`;
+      googleMapsScript.async = true;
+      googleMapsScript.defer = true;
+      googleMapsScript.onerror = () => {
+        throw new Error('Failed to load Google Maps API script.');
+      };
+
+      // Check if the script has already been appended
+      const existingScript = document.querySelector(
+        'script[src^="https://maps.googleapis.com/maps/api/js?"]'
+      );
+      if (!existingScript) {
+        document.head.appendChild(googleMapsScript);
+      } else {
+        existingScript.onload = initMap;
+      }
+      window.initMap = initMap;
+    } else {
+      // Google Maps API already loaded, so directly call initMap
+      initMap();
+      setMapInitialized(true);
+    }
+  }, [data]);
+
+
+  // Set initial zoom
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
@@ -76,6 +143,54 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
   }, []);
 
 
+  // Show/hide heatmap
+  useEffect(() => {
+    if (showHeatMap) {
+      addHeatmap()
+    } else {
+      heatmap.setMap(null);
+    }
+  }, [showHeatMap])
+
+
+  // Add heatmap
+  const addHeatmap = () => {
+    if (!window.google || !window.google.maps) {
+      return
+    } else {
+      const heatmapData = data.map(item => {
+        return new window.google.maps.LatLng(item.latitude, item.longitude);
+      });
+
+      const heatmap = new window.google.maps.visualization.HeatmapLayer({
+        data: heatmapData,
+        map: mapInstanceRef.current
+      });
+
+      heatmap.set('radius', radius)
+      heatmap.set('opacity', 0.8);
+      setHeatmap(heatmap)
+    }
+  }
+
+  // Show/hide markers
+  const handleMarkers = () => {
+    setShowMarkers(!markers)
+  }
+
+  // Show/hide markers
+  useEffect(() => {
+    // Create marker instances
+    if (markers && data) {
+      addMarkers()
+    } else {
+      markersArr.map((marker) => {
+        marker.setMap(null);
+      })
+    }
+  }, [markers])
+
+
   // Add markers
   const addMarkers = () => {
     if (markers && data) {
@@ -87,7 +202,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           },
           map: mapInstanceRef.current
         };
-
+console.log('item', item)
         // Custom markers
         if (item.item.includes("Italian") && data.length < initialData.length) {
           markerOptions.icon = {
@@ -112,19 +227,19 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           };
         }
 
-        // Custom markers
-        if (item.item.includes("Stickers") && data.length < initialData.length) {
+      // Custom markers
+        if (item.name.includes("Laura") && item.city.includes("ROXBORO")) {
           markerOptions.icon = {
-            url: "/shell.png",
+            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
             scaledSize: new window.google.maps.Size(40, 40)
           };
         }
-
 
         const marker = new window.google.maps.Marker(markerOptions);
 
         // Create infowindow instances
         const infoWindowContent = `
+        ${item.name.includes("Laura") && item.city.includes("ROXBORO") ? '<div style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 95%; margin-top: 15x; margin-right: 13px; color: #00000; font-size: 18px; background-image: linear-gradient(to right, #d7e6f5, #4D6BC6); border-radius: 8px; text-align: center; font-family: "Guardian-EgypTT", Charter><span class="tooltiptext"> Your first sale! </span></div>' : ''}
               <div id='modalContent'>
                 ${item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
                     <div >
@@ -166,6 +281,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           }
             <div id="info-content">
               <div>
+              <br />
               <img src="/person.png"
               class="infoImageName"> ${item.name}
               </div>
@@ -204,115 +320,34 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
           infoWindowsRef.current[item.name] = infoWindow;
         });
 
+        // Confetti for first sale
+        if (item.name === "Laura" && item.city.includes("ROXBORO")) {
+          marker.addListener('click', () => {
+           setShowConfetti(true)
+            setTimeout(() => setShowConfetti(false), 5000);
+            infoWindow.open(mapInstanceRef.current, marker);
+          })
+
+          //   marker.addListener('mouseover', () => {
+              //tbd
+          // });
+
+          // // Hide info window when mouseout
+          // marker.addListener('mouseout', () => {
+          //   infoWindow.close();
+          // });
+        }
+
         return marker;
       })
       setMarkersArr(markers)
     }
   }
 
-  // Add heatmap
-  const addHeatmap = () => {
-    if (!window.google || !window.google.maps) {
-      return
-    } else {
-      // Create heatmap instance
-      const heatmapData = data.map(item => {
-        return new window.google.maps.LatLng(item.latitude, item.longitude);
-      });
-
-      // Create heatmap layer
-      const heatmap = new window.google.maps.visualization.HeatmapLayer({
-        data: heatmapData,
-        map: mapInstanceRef.current
-      });
-
-      // Customize heatmap layer
-      heatmap.set('radius', radius)
-      heatmap.set('opacity', 0.8);
-      setHeatmap(heatmap)
-    }
-  }
-
-  // Show/hide heatmap
-  useEffect(() => {
-    if (showHeatMap) {
-      addHeatmap()
-    } else {
-      heatmap.setMap(null);
-    }
-  }, [showHeatMap])
-
-   // Show/hide markers
-  const handleMarkers = () => {
-    setShowMarkers(!markers)
-  }
-
-  // Show/hide markers
-  useEffect(() => {
-    // Create marker instances
-    if (markers && data) {
-      addMarkers()
-    } else {
-      markersArr.map((marker) => {
-        marker.setMap(null);
-      })
-    }
-  }, [markers])
-
-
-  // Connect to API and load map with markers and heatmap
-  useEffect(() => {
-    // Create new map instance
-    const initMap = () => {
-      const mapOptions = {
-        zoom: initialZoom,
-        center: center,
-        mapId: '2894c194fdae4e32',
-        streetViewControl: true
-      };
-
-      mapInstanceRef.current = new window.google.maps.Map(mapRef.current, mapOptions);
-
-      // Add markers
-      if (markers && data) {
-        addMarkers();
-      }
-
-      // Add heatmap function
-        addHeatmap()
-     };
-
-    // Check if Google API is loaded
-    if (!window.google || !window.google.maps) {
-      console.log('testttttt!!!!')
-      // if not, load it dynamically
-      const googleMapsScript = document.createElement('script');
-      googleMapsScript.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}&libraries=places,visualization&callback=initMap`;
-      googleMapsScript.async = true;
-      googleMapsScript.defer = true;
-      googleMapsScript.onerror = () => {
-        throw new Error('Failed to load Google Maps API script.');
-      };
-
-      // Check if the script has already been appended
-      const existingScript = document.querySelector(
-        'script[src^="https://maps.googleapis.com/maps/api/js?"]'
-      );
-      if (!existingScript) {
-        document.head.appendChild(googleMapsScript);
-      } else {
-        existingScript.onload = initMap;
-      }
-      window.initMap = initMap;
-    } else {
-      // Google Maps API already loaded, so directly call initMap
-      initMap();
-    }
-  }, [data]);
-
 
   return (
     <>
+      {showConfetti && <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={200} />}
       <FloatingPanel setShowMarkers={setShowMarkers} setShowHeatMap={setShowHeatMap} showHeatMap={showHeatMap} data={data} setData={setData} handleMarkers={handleMarkers} initialData={initialData} filteredData={filteredData} setFilteredData={setFilteredData} />
       <div id="map" ref={mapRef} className="map-container"
         style={{
@@ -326,13 +361,3 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
 };
 
 export default Map;
-
-
-
-
-
-
-
-
-
-
