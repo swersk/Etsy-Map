@@ -200,7 +200,8 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
             lat: item.latitude,
             lng: item.longitude
           },
-          map: mapInstanceRef.current
+          map: mapInstanceRef.current,
+          // animation: google.maps.Animation.BOUNCE,
         };
 console.log('item', item)
         // Custom markers
@@ -228,18 +229,20 @@ console.log('item', item)
         }
 
       // Custom markers
-        if (item.name.includes("Laura") && item.city.includes("ROXBORO")) {
-          markerOptions.icon = {
-            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-            scaledSize: new window.google.maps.Size(40, 40)
-          };
-        }
+      if (item.name.includes("Laura") && item.city.includes("ROXBORO")) {
+        markerOptions.icon = {
+          url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+          scaledSize: new window.google.maps.Size(40, 40)
+        };
+        markerOptions.animation = google.maps.Animation.BOUNCE;
+        markerOptions.clickable = true;
+      }
 
         const marker = new window.google.maps.Marker(markerOptions);
 
         // Create infowindow instances
         const infoWindowContent = `
-        ${item.name.includes("Laura") && item.city.includes("ROXBORO") ? '<div style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 95%; margin-top: 15x; margin-right: 13px; color: #00000; font-size: 18px; background-image: linear-gradient(to right, #d7e6f5, #4D6BC6); border-radius: 8px; text-align: center; font-family: "Guardian-EgypTT", Charter><span class="tooltiptext"> Your first sale! </span></div>' : ''}
+        ${item.name.includes("Laura") && item.city.includes("ROXBORO") ? '<div style=" width: 95%; margin-top: 15x; margin-right: 13px; color: #00000; font-size: 18px; background: #d7e6f5; border-radius: 8px; text-align: center; font-family: "Guardian-EgypTT", Charter><span > Your first sale! </span></div>' : ''}
               <div id='modalContent'>
                 ${item.item === "Italian Bandages, Italy Plasters, 30 pcs" ? `
                     <div >
@@ -327,16 +330,12 @@ console.log('item', item)
             setTimeout(() => setShowConfetti(false), 5000);
             infoWindow.open(mapInstanceRef.current, marker);
           })
+         }
 
-          //   marker.addListener('mouseover', () => {
-              //tbd
-          // });
-
-          // // Hide info window when mouseout
-          // marker.addListener('mouseout', () => {
-          //   infoWindow.close();
-          // });
-        }
+          // Stop the animation after 4 seconds
+            setTimeout(() => {
+            marker.setAnimation(null);
+          }, 3000);
 
         return marker;
       })
