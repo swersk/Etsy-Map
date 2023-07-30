@@ -344,7 +344,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     <>
       {showConfetti && (
         <>
-      <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={300} gravity={0.4}/>
+      <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={250}/>
       <div className="first-sale-banner">
       <div className="bounce-text">Your first sale!</div>
     </div>
