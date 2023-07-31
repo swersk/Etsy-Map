@@ -201,7 +201,6 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
             lng: item.longitude
           },
           map: mapInstanceRef.current,
-          animation: google.maps.Animation.DROP,
         };
 
         // Custom markers
@@ -240,7 +239,6 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
         }
 
         const marker = new window.google.maps.Marker(markerOptions);
-
 
         // Create infowindow instances
         const infoWindowContent = `
@@ -338,7 +336,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     <>
       {showConfetti && (
         <>
-      <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={250} gravity={2.5}/>
+      <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={250} gravity={2.3}/>
       <div className="first-sale-banner">
       <div className="bounce-text-2">Your first sale!</div>
 
