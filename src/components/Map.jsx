@@ -179,9 +179,8 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     setShowMarkers(!markers)
   }
 
-  // Show/hide markers
+  // Add/remove markers
   useEffect(() => {
-    // Create marker instances
     if (markers && data) {
       addMarkers()
     } else {
@@ -192,7 +191,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
   }, [markers])
 
 
-  // Add markers
+  // Create markers
   const addMarkers = () => {
     if (markers && data) {
       const markers = data.map(item => {
@@ -202,6 +201,7 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
             lng: item.longitude
           },
           map: mapInstanceRef.current,
+          animation: google.maps.Animation.DROP,
         };
 
         // Custom markers
