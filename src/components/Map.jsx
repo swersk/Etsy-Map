@@ -21,7 +21,6 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
   const [initialZoom, setInitialZoom] = useState(4.5);
   const [mapInitialized, setMapInitialized] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [blueMarkerBounced, setBlueMarkerBounced] = useState(false);
 
 
   // STRUCTURE
@@ -232,11 +231,12 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
         // Custom markers
         if (item.name.includes("Laura") && item.city.includes("ROXBORO")) {
           markerOptions.icon = {
-            url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
-            scaledSize: new window.google.maps.Size(40, 40)
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: '#F56400',
+            fillOpacity: 1.0,
+            scale: 8,
+            strokeWeight: 0
           };
-          markerOptions.animation = google.maps.Animation.BOUNCE;
-          markerOptions.clickable = true;
         }
 
         const marker = new window.google.maps.Marker(markerOptions);
@@ -323,23 +323,10 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
         if (item.name === "Laura" && item.city.includes("ROXBORO")) {
           marker.addListener('click', () => {
             setShowConfetti(true)
-            setTimeout(() => setShowConfetti(false), 5000);
+            setTimeout(() => setShowConfetti(false), 3000);
             infoWindow.open(mapInstanceRef.current, marker);
           })
         }
-
-        // Stop the blue marker animation after 4 seconds
-        if (!blueMarkerBounced) {
-        setTimeout(() => {
-          marker.setAnimation(null);
-          setBlueMarkerBounced(true);
-        }, 3000);
-
-      } else {
-          marker.setAnimation(null);
-      }
-
-
         return marker;
       })
       setMarkersArr(markers)
@@ -351,9 +338,10 @@ const Map = ({ data, setData, showHeatMap, setShowHeatMap, markers, setShowMarke
     <>
       {showConfetti && (
         <>
-      <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={250}/>
+      <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={250} gravity={2.5}/>
       <div className="first-sale-banner">
-      <div className="bounce-text">Your first sale!</div>
+      <div className="bounce-text-2">Your first sale!</div>
+
     </div>
     </>
       )}
