@@ -15,12 +15,13 @@ const Map = ({
   initialData,
   setInitialData,
   markersArr,
-  setMarkersArr
+  setMarkersArr,
+  setHeatmap,
+  heatmap
 }) => {
   const mapRef = useRef(null);
   const mapInstanceRef = useRef(null);
   const infoWindowsRef = useRef({});
-  const [heatmap, setHeatmap] = useState(true);
   const [radius, setRadius] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
   const [center, setCenter] = useState({ lat: 38.167243, lng: -98.5795 });
@@ -39,9 +40,9 @@ const Map = ({
     // SHOW CONFETTI
 
 
+
   // Connect to API and load map
   useEffect(() => {
-
     // Create map instance
     const initMap = () => {
       const mapOptions = {
@@ -93,6 +94,12 @@ const Map = ({
     }
   }, []);
 
+  useEffect(() => {
+    console.log('WINDOW CHANGE!!')
+
+  }, [window.innerWidth])
+
+
   // Show/hide heatmap
   useEffect(() => {
     if (showHeatMap) {
@@ -101,7 +108,6 @@ const Map = ({
       heatmap.setMap(null);
     }
   }, [showHeatMap, data]);
-
 
 
   // Add heatmap
@@ -341,6 +347,7 @@ const Map = ({
         setShowHeatMap={setShowHeatMap}
         showHeatMap={showHeatMap}
         data={data}
+        markers={markers}
         setData={setData}
         handleMarkers={handleMarkers}
         initialData={initialData}

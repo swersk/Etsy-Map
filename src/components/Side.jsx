@@ -29,7 +29,8 @@ const Side = ({
   setMapIsLoaded,
   mapIsLoaded,
   markersArr,
-  setMarkersArr
+  setMarkersArr,
+  heatmap
 }) => {
   const [open, setOpen] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(true);
@@ -54,6 +55,8 @@ const Side = ({
   const handleSelection = (e, photoTitle) => {
     // Toggle the checked status of the photo item
           e.preventDefault();
+
+         heatmap.setMap(null);
 
           markersArr.forEach((marker) => {
             marker.setMap(null);
@@ -84,7 +87,6 @@ const Side = ({
 
   };
 
-
   // Drawer close
   const handleDrawerClose = () => {
     setOpen(false);
@@ -92,6 +94,8 @@ const Side = ({
 
   const handleShowAll = () => {
     if (Object.keys(checkedItems).length === 0) {
+      setShowMarkers(true);
+      setShowHeatMap(true);
       return;
     }
 

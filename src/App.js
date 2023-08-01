@@ -13,6 +13,7 @@ function App() {
   const [mapIsLoaded, setMapIsLoaded] = useState(false);
   const [markersArr, setMarkersArr] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [heatmap, setHeatmap] = useState(true);
 
   // Parse CSV data
   useEffect(() => {
@@ -63,7 +64,7 @@ function App() {
           setData={setData}
           initialData={initialData}
           setMapIsLoaded={setMapIsLoaded}
-          mapIsLoaded={mapIsLoaded} setMarkersArr={setMarkersArr} markersArr={markersArr}
+          mapIsLoaded={mapIsLoaded} setMarkersArr={setMarkersArr} markersArr={markersArr}  heatmap={heatmap}
         />
         <h2>Etsy Sales Map</h2>
         <Dropdown className="Dropdown" />
@@ -78,7 +79,7 @@ function App() {
         initialData={initialData}
         setInitialData={setInitialData}
         setMapIsLoaded={setMapIsLoaded}
-        mapIsLoaded={mapIsLoaded} setMarkersArr={setMarkersArr} markersArr={markersArr}
+        mapIsLoaded={mapIsLoaded} setMarkersArr={setMarkersArr} markersArr={markersArr} setHeatmap={setHeatmap} heatmap={heatmap}
       />
     </div>
   );
