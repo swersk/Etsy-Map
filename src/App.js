@@ -42,7 +42,6 @@ function App() {
             setLoading(false);
           },
         });
-        console.log("DATA!!!!", initialData);
       });
   }, []);
 

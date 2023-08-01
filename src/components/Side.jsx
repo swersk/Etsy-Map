@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, useMemo } from "react";
 import {
   Drawer,
   Icon,
@@ -16,7 +16,6 @@ import {
 import FilterListIcon from "@mui/icons-material/FilterList";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled, useTheme } from "@mui/material/styles";
-
 
 const Side = ({
   setShowMarkers,
@@ -30,37 +29,40 @@ const Side = ({
   mapIsLoaded,
   markersArr,
   setMarkersArr,
-  heatmap
+  heatmap,
 }) => {
   const [open, setOpen] = useState(false);
   const [selectAllChecked, setSelectAllChecked] = useState(true);
   const [checkedItems, setCheckedItems] = useState({});
   const isMobile = window.innerWidth <= 600;
 
+  // Filter data using useMemo
+  const filterData = useMemo(() => {
+    if (Object.keys(checkedItems).length > 0) {
+      const filteredData = initialData.filter(
+        (item) => checkedItems[item.item]
+      );
+      setData(filteredData);
+    } else {
+      setData(initialData);
+    }
+  }, [checkedItems]);
+
   useEffect(() => {
-    const filterData = () => {
-      if (Object.keys(checkedItems).length > 0) {
-        const filteredData = initialData.filter(
-          (item) => checkedItems[item.item]
-        );
-        setData(filteredData);
-      } else {
-        setData(initialData);
-      }
-    };
     filterData();
   }, [checkedItems]);
 
 
+
   const handleSelection = (e, photoTitle) => {
     // Toggle the checked status of the photo item
-          e.preventDefault();
+    e.preventDefault();
 
-         heatmap.setMap(null);
+    heatmap.setMap(null);
 
-          markersArr.forEach((marker) => {
-            marker.setMap(null);
-          });
+    markersArr.forEach((marker) => {
+      marker.setMap(null);
+    });
 
     // Check if already selected, reset to empty obj
     if (checkedItems[photoTitle]) {
@@ -68,8 +70,6 @@ const Side = ({
       delete checkedItemCopy[photoTitle];
       setCheckedItems(checkedItemCopy);
     } else {
-
-
       setCheckedItems((prevCheckedItems) => ({
         ...prevCheckedItems,
         [photoTitle]: !prevCheckedItems[photoTitle],
@@ -84,7 +84,6 @@ const Side = ({
     if (isMobile) {
       setOpen(false);
     }
-
   };
 
   // Drawer close
