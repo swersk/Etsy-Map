@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import { useState, useEffect, Fragment, useMemo } from "react";
+import { useState, useEffect, Fragment, useCallback } from "react";
 import {
   Drawer,
   Icon,
@@ -36,8 +36,7 @@ const Side = ({
   const [checkedItems, setCheckedItems] = useState({});
   const isMobile = window.innerWidth <= 600;
 
-  // Filter data using useMemo
-  const filterData = useMemo(() => {
+  const filterData = useCallback(() => {
     if (Object.keys(checkedItems).length > 0) {
       const filteredData = initialData.filter(
         (item) => checkedItems[item.item]
@@ -51,7 +50,6 @@ const Side = ({
   useEffect(() => {
     filterData();
   }, [checkedItems]);
-
 
 
   const handleSelection = (e, photoTitle) => {
