@@ -21,9 +21,8 @@ const Map = ({
   const mapInstanceRef = useRef(null);
   const infoWindowsRef = useRef({});
   const [heatmap, setHeatmap] = useState(true);
-  const [radius, setRadius] = useState(20);
+  const [radius, setRadius] = useState(null);
   const [filteredData, setFilteredData] = useState([]);
-
   const [center, setCenter] = useState({ lat: 38.167243, lng: -98.5795 });
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [initialZoom, setInitialZoom] = useState(null);
@@ -42,11 +41,12 @@ const Map = ({
 
   // Connect to API and load map
   useEffect(() => {
+
     // Create map instance
     const initMap = () => {
       const mapOptions = {
         zoom: window.innerWidth <= 768 ? 3.1 : window.innerWidth <= 1024 ? 4.0 : 4.6,
-        center: center,
+        center: window.innerWidth <= 768 ? { lat: 28, lng: -96.5795 } : window.innerWidth <= 1024 ? { lat: 41.267243, lng: -95.771556 } : { lat: 38.167243, lng: -98.5795 },
         mapId: "2894c194fdae4e32",
         streetViewControl: true,
       };
@@ -88,31 +88,9 @@ const Map = ({
     } else {
       // Google Maps API already loaded, so directly call initMap
       initMap();
+
       setMapInitialized(true);
     }
-  }, []);
-console.log('zoom', initialZoom)
-
-  // Set initial zoom
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth <= 768) {
-        setCenter({ lat: 28, lng: -96.5795 });
-        setRadius(20);
-      } else if (window.innerWidth <= 1024) {
-        setCenter({ lat: 41.267243, lng: -95.771556 });
-      } else {
-        setCenter({ lat: 38.167243, lng: -98.5795 });
-        setRadius(40);
-      }
-    };
-
-    // Call the handleResize function initially and when window is resized
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    // Clean up the event listener when the component unmounts
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Show/hide heatmap
@@ -123,6 +101,8 @@ console.log('zoom', initialZoom)
       heatmap.setMap(null);
     }
   }, [showHeatMap, data]);
+
+
 
   // Add heatmap
   const addHeatmap = () => {
@@ -136,9 +116,9 @@ console.log('zoom', initialZoom)
       const heatmap = new window.google.maps.visualization.HeatmapLayer({
         data: heatmapData,
         map: mapInstanceRef.current,
+        radius: window.innerWidth <= 768 ? 15 : 40,
       });
 
-      heatmap.set("radius", radius);
       heatmap.set("opacity", 0.8);
       setHeatmap(heatmap);
     }

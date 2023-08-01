@@ -17,8 +17,6 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled, useTheme } from "@mui/material/styles";
 
-// TODO: Make sure drawer doesn't cover infowindow / recenter map
-// TODO: Avoid rerender on every click
 
 const Side = ({
   setShowMarkers,
@@ -93,6 +91,10 @@ const Side = ({
   };
 
   const handleShowAll = () => {
+    if (Object.keys(checkedItems).length === 0) {
+      return;
+    }
+
     markersArr.forEach((marker) => {
       marker.setMap(null);
     });
