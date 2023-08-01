@@ -90,6 +90,7 @@ const Side = ({
   };
 
   const handleShowAll = () => {
+
     if (Object.keys(checkedItems).length === 0) {
       setShowMarkers(true);
       setShowHeatMap(true);
@@ -97,6 +98,7 @@ const Side = ({
     }
 
     markersArr.forEach((marker) => {
+      heatmap.setMap(null);
       marker.setMap(null);
     });
     setData(initialData);
