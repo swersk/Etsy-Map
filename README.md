@@ -20,7 +20,7 @@ EtsyMap brings delight to the data analysis process! I've created an interactive
 
 ## Demo
 
-Demo hurrrr>
+[Demo](/public/demo.gif)
 
 
 
