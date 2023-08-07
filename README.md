@@ -28,21 +28,21 @@ EtsyMap brings delight to the data analysis process! As an Etsy shop owner, I wa
 
 ## Features
 
-• Display sales data as markers and a heatmap on a Google Map <br />
+• View sales data as markers and a heatmap on a Google Map <br />
 • Toggle markers and heatmap on/off<br />
-• Find more information for each order by clicking on the marker<br />
-• Filter sales data by product<br />
+• See detailed information by sale via marker infowindows <br />
+• Filter sales by product<br />
 • Responsive and user-friendly interface
 
 This project is licensed under the MIT License.
 
 
 
-## Upcoming Features
+## v2
 
 The next version will include the following features:<br />
 • View sales trends (MoM and YoY)<br />
-• Buyer reviews included in Infowindows<br />
+• See and filter by reviews <br />
 • AI-generated fun facts about sales data<br />
 
 
