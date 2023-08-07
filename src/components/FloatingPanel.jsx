@@ -8,6 +8,8 @@ import { styled } from "@mui/material/styles";
 import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
 
+// This component is the toggle menu on the bottom left
+
 const FloatingPanel = ({
   setShowMarkers,
   setShowHeatMap,

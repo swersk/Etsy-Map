@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Map from "./components/Map";
 
-jest.mock('./components/Map', () => {
+jest.mock("./components/Map", () => {
   // Mocking the Google Maps API
   const googleMapsMock = {
     Map: jest.fn(),
@@ -12,7 +12,7 @@ jest.mock('./components/Map', () => {
   };
 
   return {
-    ...jest.requireActual('./components/Map'), // Keep the original module functionality
+    ...jest.requireActual("./components/Map"), // Keep the original module functionality
     // Set google as a global object
     global: {
       google: {
@@ -35,6 +35,4 @@ describe("Map Component", () => {
     expect(screen.getByTestId("floating-panel")).toBeInTheDocument();
     expect(screen.getByTestId("fun-fact")).toBeInTheDocument();
   });
-
-  // More tests here
 });

@@ -17,6 +17,8 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled, useTheme } from "@mui/material/styles";
 
+// This component is the filter menu on the top left
+
 const Side = ({
   setShowMarkers,
   setShowHeatMap,
@@ -50,7 +52,6 @@ const Side = ({
   useEffect(() => {
     filterData();
   }, [checkedItems]);
-
 
   const handleSelection = (e, photoTitle) => {
     // Toggle the checked status of the photo item
@@ -90,7 +91,6 @@ const Side = ({
   };
 
   const handleShowAll = () => {
-
     if (Object.keys(checkedItems).length === 0) {
       setShowMarkers(true);
       setShowHeatMap(true);
