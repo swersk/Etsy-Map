@@ -7,7 +7,7 @@ EtsyMap brings delight to the data analysis process! As an Etsy shop owner, I wa
 
 
 ## Demo
-👉 [Deployed link](https://etsymap-jl1mlv5dj-swersk.vercel.app/) </br></br>
+👉 <a href="https://etsymap-jl1mlv5dj-swersk.vercel.app/" target="_blank">Deployed link</a> </br></br>
 ![Demo](/public/demo.gif)
 
 
